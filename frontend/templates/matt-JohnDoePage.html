@@ -12,52 +12,65 @@
 <body>
     <div class='wrapper'>
         <header class='main-header'>
-            <h1>John Doe</h1>
-            <h2>Date of Birth:</h2>
-            <h3>11/12/1985</h3>
-            <h2>Phone:</h2>
-            <h3>(614) 555-1212</h3>
+            <h1 class='main-header__title'>John Doe</h1>
+            <section class=main-header__info>
+                <h2 class='main-header__info__title'>Date of Birth:</h2>
+                <p class='main-header__info__content'>11/12/1985</p>
+            </section>
+            <section class=main-header__info>
+                <h2>Phone:</h2>
+                <p>(614) 555-1212</p>
+            </section>
         </header>
         <main>
             <div class='container'>
-                <h3>Address:</h3>
-                <h4>123 Anywhere St.</h4>
-                <h4>Canton, Ohio 44707</h4>
-                <h3>Household Size:</h3>
-                <h4>5</h4>
-                <h3>Delivery:</h3>
-                <h4>No</h4>
-                <h3>John Doe is ELIGIBLE to receive food today.</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="2">RECENT TRANSACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>PEOPLE</td>
-                            <td>DATE</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>08/02/2019</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>07/26/2019</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>07/19/2019</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="2">SHOW MORE...</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <section class='info-section'>
+                    <h3 class='info-section__title'>Address:</h3>
+                    <h4 class='info-section__content'>123 Anywhere St.</h4>
+                    <h4 class='info-section__content'>Canton, Ohio 44707</h4>
+                </section>
+                <section class='info-section'>
+                    <h3 class='info-section__title'>Household Size:</h3>
+                    <h4 class='info-section__content'>5</h4>
+                </section>
+                <section class='info-section'>
+                    <h3 class='info-section__title'>Delivery:</h3>
+                    <h4 class='info-section__content'>No</h4>
+                </section>
+                <section class='eligibility-section'>
+                    <h3 class='info-section__title'>Eligibility:</h3>
+                    <h4 class='info-section__content'></h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan='2'>RECENT TRANSACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PEOPLE</td>
+                                <td>DATE</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>08/02/2019</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>07/26/2019</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>07/19/2019</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan='2'>SHOW MORE...</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
             </div> <!-- /container -->
         </main>
     </div> <!-- /wrapper -->
