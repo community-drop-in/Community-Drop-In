@@ -4,10 +4,10 @@
     margin: 0;
     padding: 0;
 
-        /* PUT BORDERS AROUND EVERYTHING */
-        border-style: solid;
+        /* PUT BORDERS AROUND EVERYTHING FOR TESTING */
+        /* border-style: solid;
         border-color: red;
-        border-width: 1px;
+        border-width: 1px; */
 }
 
 /* WRAPPER / CONTAINER STUFF */
@@ -15,8 +15,13 @@
 html {
     /* VARIABLES */
     --color-link-hover: red;
+    --color-background: rgb(242, 223, 117);
+    --color-foreground: rebeccapurple;
 
     /* FONTS, BACKGROUNDS, ETC. */
+    background: var(--color-background);
+    color: var(--color-foreground);
+    
     font-family: 'Roboto', sans-serif;
     font-size: 20px 1.618;
 }
@@ -26,6 +31,8 @@ body {
 }
 
 .wrapper {
+    max-width: 50rem;
+    margin: auto;
 
 }
 
@@ -50,9 +57,11 @@ a:hover {
 /* CLASSES */
 
 .main-header {
-    align-items:center;
+    align-items: center;
+    background: var(--color-foreground);
+    color: var(--color-background);
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 1rem;
 }
 
@@ -73,6 +82,10 @@ a:hover {
     padding-left: 0.25rem;
 }
 
+.info-title {
+    padding: 1rem;
+}
+
 .info-section {
     display: flex;
     align-items: center;
@@ -88,6 +101,17 @@ a:hover {
 }
 
 .eligibility-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
     padding-left: 1rem;
+}
 
+.eligibility-section__title {
+    padding-left: 0.25rem;
+}
+
+.eligibility-section__content {
+    padding-left: 0.25rem
 }
