@@ -1,8 +1,10 @@
 package com.communitydropin.CommunityDropInBackend;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,21 +21,27 @@ public class HeadOfHousehold {
 	private String address;
 	private boolean deliveryStatus;
 	private int houseSize;
-	private Set<HeadOfHousehold> dateofBirth = new HashSet<HeadOfHousehold>();
-	private Set<HeadOfHousehold> datesReceives = new HashSet<HeadOfHousehold>();
+	private Calendar dateOfBirth;
+	@ElementCollection
+	private List<Calendar> datesReceived; //if im wrong we will come back to fix it
 	private String firstName;
 	
 	
-	public HeadOfHousehold(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus, int houseSize) {
+	public HeadOfHousehold(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus, int houseSize, Calendar dateOfBirth) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.deliveryStatus = deliveryStatus;
 		this.houseSize = houseSize;
+		this.dateOfBirth = dateOfBirth;
+		this.datesReceived = new ArrayList<Calendar>();
+}
+	@SuppressWarnings("unused")
+	private HeadOfHousehold() {
+		
 	}
-	
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -44,7 +52,7 @@ public class HeadOfHousehold {
 		return address;
 	}
 	public Long getPhoneNumber() {
-		return phoneNumber;
+		return phoneNumber;	
 	}
 	public boolean isDeliveryStatus() {
 		return deliveryStatus;
@@ -52,11 +60,14 @@ public class HeadOfHousehold {
 	public int getHouseSize() {
 		return houseSize;
 	}
-	public Set<HeadOfHousehold> getDateofBirth() {
-		return dateofBirth;
+	public Long getId() {
+		return id;
 	}
-	public Set<HeadOfHousehold> getDatesReceives() {
-		return datesReceives;
+	public Calendar getDateofBirth() {
+		return dateOfBirth;
+	}
+	public List<Calendar> getDatesReceived() {
+		return datesReceived;
 	}
 
 
@@ -85,6 +96,8 @@ public class HeadOfHousehold {
 			return false;
 		return true;
 	}
+
+
 
 	
 }
