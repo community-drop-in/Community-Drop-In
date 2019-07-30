@@ -40,6 +40,11 @@ body {
 
 }
 
+.table {
+    
+}
+
+
 /* LISTS, LINKS, ETC. */
 
 ul {
@@ -59,6 +64,7 @@ a:hover {
 .main-header {
     align-items: center;
     background: var(--color-foreground);
+    box-shadow: 0 0 10px black;
     color: var(--color-background);
     display:flex;
     justify-content: space-between;
@@ -66,7 +72,7 @@ a:hover {
 }
 
 .main-header__title {
-
+    
 }
 
 .main-header__info {
@@ -75,7 +81,7 @@ a:hover {
 }
 
 .main-header__info__title {
-
+    
 }
 
 .main-header__info__content {
@@ -87,10 +93,11 @@ a:hover {
 }
 
 .info-section {
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
     padding: 0.5rem;
     padding-left: 1rem;
+    width: 100%;
 }
 
 .info-section__title {
@@ -98,6 +105,20 @@ a:hover {
 
 .info-section__content {
     padding-left: 0.25rem;
+}
+
+.info-section__modify-button {
+    background-color: var(--color-foreground);
+    border-color: black;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 5px black;
+    color: var(--color-background);
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+}
+
+.info-section__modify-button:hover {
+    transform:scale(1.05);
 }
 
 .eligibility-section {
@@ -135,4 +156,17 @@ a:hover {
     font-size: 3rem;
     margin: 0.5rem;
     padding: 1rem;
+}
+
+.give-food-button:hover {
+    transform: scale(1.05);
+}
+
+.disabled {
+    background-color: grey;
+    color: white;
+}
+
+.disabled:hover {
+    transform:none;
 }
