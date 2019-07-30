@@ -115,3 +115,13 @@ a:hover {
 .eligibility-section__content {
     padding-left: 0.25rem
 }
+
+.eligible {
+    background-color: green;
+    color: white;
+}
+
+.ineligible {
+    background-color: red;
+    color: white;
+}
