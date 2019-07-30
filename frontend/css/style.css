@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+        /* PUT BORDERS AROUND EVERYTHING */
+        border-style: solid;
+        border-color: red;
+        border-width: 1px;
+}
+
+/* WRAPPER / CONTAINER STUFF */
+
+html {
+    /* VARIABLES */
+    --color-link-hover: red;
+
+    /* FONTS, BACKGROUNDS, ETC. */
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px 1.618;
+}
+
+body {
+
+}
+
+.wrapper {
+
+}
+
+.container {
+
+}
+
+/* LISTS, LINKS, ETC. */
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: var(--color-link-hover);
+}
+
+/* CLASSES */
+
+.main-header {
+    align-items:center;
+    display:flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.main-header__title {
+
+}
+
+.main-header__info {
+    display: flex;
+    align-items: center;
+}
+
+.main-header__info__title {
+
+}
+
+.main-header__info__content {
+    padding-left: 0.25rem;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    padding-left: 1rem;
+}
+
+.info-section__title {
+}
+
+.info-section__content {
+    padding-left: 0.25rem;
+}
+
+.eligibility-section {
+    padding-left: 1rem;
+
+}
