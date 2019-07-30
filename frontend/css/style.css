@@ -125,3 +125,14 @@ a:hover {
     background-color: red;
     color: white;
 }
+
+.give-food-button {
+    background-color: green;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+}
