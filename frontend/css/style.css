@@ -1,13 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* WRAPPER / CONTAINER STUFF */
+
+html {
+    /* VARIABLES */
+    --color-link-hover: red;
+
+    /* FONTS, BACKGROUNDS, ETC. */
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px 1.618;
+}
+
+body {
+
+}
+
+.wrapper {
+
+}
+
+.container {
+
+}
+
+/* LISTS, LINKS, ETC. */
+
 ul {
     list-style: none;
 }
 
 a {
+    color: inherit;
+}
 
+a:hover {
+    color: var(--color-link-hover);
+}
+
+/* CLASSES */
+
+.main-header {
+    display:flex;
+    align-items:center;
 }

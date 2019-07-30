@@ -1,33 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Head Of Household</title>
+    <link rel="stylesheet" href="../css/style.css" />
 </head>
+
 <body>
-    <header>
-        <h1>John Doe</h1>
-        <h2>Date of Birth: 11/12/1985</h2>
-        <h2>Phone: (614) 867-5309</h2>
-    </header>
-    <main>
-        <h3>Household Size: 5</h3>
-        <h3>Delivery: No</h3>
-        <h3>RECENT TRANSACTIONS</h3>
-        <ul>
-            <li>
-                <p>08/02/2019</p>
-            </li>
-            <li>
-                <p>07/26/2019</p>
-            </li>
-            <li>
-                <p>07/19/2019</p>
-            </li>
-            <h4>SHOW MORE ...</h4>
-        </ul>
-    </main>
+    <div class='wrapper'>
+        <header class='main-header'>
+            <h1>John Doe</h1>
+            <h2>Date of Birth:</h2>
+            <h3>11/12/1985</h3>
+            <h2>Phone:</h2>
+            <h3>(614) 555-1212</h3>
+        </header>
+        <main>
+            <div class='container'>
+                <h3>Address:</h3>
+                <h4>123 Anywhere St.</h4>
+                <h4>Canton, Ohio 44707</h4>
+                <h3>Household Size:</h3>
+                <h4>5</h4>
+                <h3>Delivery:</h3>
+                <h4>No</h4>
+                <h3>John Doe is ELIGIBLE to receive food today.</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">RECENT TRANSACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PEOPLE</td>
+                            <td>DATE</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>08/02/2019</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>07/26/2019</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>07/19/2019</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">SHOW MORE...</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div> <!-- /container -->
+        </main>
+    </div> <!-- /wrapper -->
 </body>
+
 </html>
