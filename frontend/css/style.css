@@ -91,3 +91,19 @@ a:hover {
     padding-left: 1rem;
 
 }
+
+.kitchen-main-header {
+    height: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+
+.kitchen-sub-header {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+}
