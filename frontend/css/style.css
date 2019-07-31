@@ -194,3 +194,85 @@ a:hover {
     align-items: center;
     font-size: 40px;
 }
+
+/* search sortby page */
+
+.search-bar{
+    margin-top: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+}
+
+.recipient-search{
+    width: inherit;
+    height: 3rem;
+    display: flex;
+}
+
+.recipient-search__input{
+    flex-grow: 2;
+    height: inherit;
+    font-size: 3rem;
+}
+
+.recipient-search__submit{
+    font-size: 2rem;
+}
+
+.recipient-results{
+    margin-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+}
+
+.results-table{
+    width: inherit;
+    font-size: 1rem;
+    height: auto;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+table, th, td{
+    border: 1px solid black;
+}
+
+.results-table__head{
+
+}
+
+.head__firstname{
+
+}
+
+.head__lastname{
+
+}
+
+.head__dob{
+
+}
+
+.head__phone{
+
+}
+
+.head__address{
+
+}
+
+.head__household{
+
+}
+
+.head__delivery{
+
+}
+
+.head__eligible{
+
+}
