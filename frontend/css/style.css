@@ -95,15 +95,21 @@ a:hover {
 .info-section {
     display:flex;
     align-items:center;
+    justify-content: space-between;
     padding: 0.5rem;
     padding-left: 1rem;
     width: 100%;
 }
 
-.info-section__title {
+.info-section__content-div {
+    display:flex;
+    align-items:center;
 }
 
-.info-section__content {
+.info-section__content-div__title {
+}
+
+.info-section__content-div__content {
     padding-left: 0.25rem;
 }
 
