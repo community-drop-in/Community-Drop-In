@@ -40,6 +40,11 @@ body {
 
 }
 
+.table {
+    
+}
+
+
 /* LISTS, LINKS, ETC. */
 
 ul {
@@ -59,6 +64,7 @@ a:hover {
 .main-header {
     align-items: center;
     background: var(--color-foreground);
+    box-shadow: 0 0 10px black;
     color: var(--color-background);
     display:flex;
     justify-content: space-between;
@@ -66,7 +72,7 @@ a:hover {
 }
 
 .main-header__title {
-
+    
 }
 
 .main-header__info {
@@ -75,7 +81,7 @@ a:hover {
 }
 
 .main-header__info__title {
-
+    
 }
 
 .main-header__info__content {
@@ -87,17 +93,38 @@ a:hover {
 }
 
 .info-section {
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
     padding: 0.5rem;
     padding-left: 1rem;
+    width: 100%;
 }
 
-.info-section__title {
+.info-section__content-div {
+    display:flex;
+    align-items:center;
 }
 
-.info-section__content {
+.info-section__content-div__title {
+}
+
+.info-section__content-div__content {
     padding-left: 0.25rem;
+}
+
+.info-section__modify-button {
+    background-color: var(--color-foreground);
+    border-color: black;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 5px black;
+    color: var(--color-background);
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+}
+
+.info-section__modify-button:hover {
+    transform:scale(1.05);
 }
 
 .eligibility-section {
@@ -124,4 +151,44 @@ a:hover {
 .ineligible {
     background-color: red;
     color: white;
+}
+
+.give-food-button {
+    background-color: green;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+}
+
+.give-food-button:hover {
+    transform: scale(1.05);
+}
+
+.disabled {
+    background-color: grey;
+    color: white;
+}
+
+.disabled:hover {
+    transform:none;
+}
+
+.kitchen-main-header {
+    height: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+
+.kitchen-sub-header {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
 }
