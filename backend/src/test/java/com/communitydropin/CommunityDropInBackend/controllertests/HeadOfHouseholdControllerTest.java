@@ -51,6 +51,8 @@ public class HeadOfHouseholdControllerTest {
 	@Test
 	public void hohControllerShouldPostSingleHoh() {
 		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(hoh);
+		when(hohRepo.findAll()).thenReturn(Collections.singletonList(hoh));
+		assertThat(underTest.postSingleHoh(hoh), is(Collections.singletonList(hoh)));
 	}
 
 }
