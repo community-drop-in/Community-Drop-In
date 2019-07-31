@@ -1,5 +1,6 @@
 package com.communitydropin.CommunityDropInBackend;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -21,13 +22,13 @@ public class HeadOfHousehold {
 	private String address;
 	private boolean deliveryStatus;
 	private int houseSize;
-	private Calendar dateOfBirth;
+	private LocalDate dateOfBirth;
 	@ElementCollection
 	private List<Calendar> datesReceived; //if im wrong we will come back to fix it
 	private String firstName;
 	
 	
-	public HeadOfHousehold(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus, int houseSize, Calendar dateOfBirth) {
+	public HeadOfHousehold(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus, int houseSize, LocalDate dateOfBirth) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -63,7 +64,7 @@ public class HeadOfHousehold {
 	public Long getId() {
 		return id;
 	}
-	public Calendar getDateofBirth() {
+	public LocalDate getDateofBirth() {
 		return dateOfBirth;
 	}
 	public List<Calendar> getDatesReceived() {
