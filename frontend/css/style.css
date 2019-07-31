@@ -178,11 +178,13 @@ a:hover {
 }
 
 .kitchen-main-header {
+    color: var(--color-background);
+    background: var(--color-foreground);
     height: 10rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .kitchen-sub-header {
@@ -190,5 +192,5 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 30px;
+    font-size: 40px;
 }
