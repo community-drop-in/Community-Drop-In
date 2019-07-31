@@ -52,7 +52,7 @@ public class HeadOfHouseholdControllerTest {
 	public void hohControllerShouldPostSingleHoh() {
 		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(hoh);
 		when(hohRepo.findAll()).thenReturn(Collections.singletonList(hoh));
-		assertThat(underTest.postSingleHoh(hoh), is(Collections.singletonList(hoh)));
+		assertThat(underTest.postSingleRecipient(hoh), is(Collections.singletonList(hoh)));
 	}
 
 }

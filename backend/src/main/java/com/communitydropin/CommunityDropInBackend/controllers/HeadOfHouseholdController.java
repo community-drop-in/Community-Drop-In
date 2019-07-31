@@ -27,9 +27,9 @@ public class HeadOfHouseholdController {
 		return hohRepo.findById(id).get();
 	}
 
-	public Object postSingleHoh(HeadOfHousehold hoh) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object postSingleRecipient(HeadOfHousehold hoh) {
+		hohRepo.save(hoh);
+		return hohRepo.findAll();
 	}
 	
 	
