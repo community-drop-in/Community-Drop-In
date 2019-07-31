@@ -21,6 +21,16 @@ public class HeadOfHouseholdController {
 	public Iterable<HeadOfHousehold> retrieveAllRecipients(){
 		return hohRepo.findAll();
 	}
+
+	public HeadOfHousehold retrieveSingleRecipient(Long id) {
+		
+		return hohRepo.findById(id).get();
+	}
+
+	public Object postSingleHoh(HeadOfHousehold hoh) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

@@ -2,9 +2,11 @@ package com.communitydropin.CommunityDropInBackend.controllertests;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
-
+import static org.mockito.ArgumentMatchers.any;
 import java.util.Collections;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,9 +44,13 @@ public class HeadOfHouseholdControllerTest {
 	
 	@Test
 	public void hohControllerShouldReturnSingleHoh() {
-		when(hohRepo.findById(1L)).thenReturn(hoh);
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(hoh));
 		HeadOfHousehold retrievedHoh = underTest.retrieveSingleRecipient(1L);
 		assertThat(retrievedHoh, is(hoh));
+	}
+	@Test
+	public void hohControllerShouldPostSingleHoh() {
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(hoh);
 	}
 
 }
