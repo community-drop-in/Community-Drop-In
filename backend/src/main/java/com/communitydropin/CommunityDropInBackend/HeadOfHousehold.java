@@ -1,6 +1,7 @@
 package com.communitydropin.CommunityDropInBackend;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -64,8 +65,8 @@ public class HeadOfHousehold {
 	public Long getId() {
 		return id;
 	}
-	public LocalDate getDateofBirth() {
-		return dateOfBirth;
+	public String getDateofBirth() {
+		return dateOfBirth.format(DateTimeFormatter.BASIC_ISO_DATE);
 	}
 	public List<Calendar> getDatesReceived() {
 		return datesReceived;

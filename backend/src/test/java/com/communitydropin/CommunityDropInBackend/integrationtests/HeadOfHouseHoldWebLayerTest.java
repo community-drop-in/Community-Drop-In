@@ -48,26 +48,16 @@ public class HeadOfHouseHoldWebLayerTest {
 	@Test
 	public void fetchCollectionOfHoh() throws Exception {
 		when(hohRepo.findAll()).thenReturn(Collections.singletonList(testHoh));
-		mockMvc.perform(get("/api/receipients")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().contentType("application/json;charset=UTF-8"))
+		mockMvc.perform(get("/api/recipients")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
 	}
-
-//	@Test
-//	public void fetchSingleHoh() throws Exception {
-//		when(hohRepo.findById(1L)).thenReturn(Optional.of(testHoh));
-//		mockMvc.perform(get("/api/receipients/1")).andDo(print()).andExpect(status().isOk())
-//				.andExpect(content().contentType("application/json;charset=UTF-8"))
+	
+	@Test
+	public void fetchSingleHoh () throws Exception {
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(testHoh));
+		mockMvc.perform(get("/api/recipients/1")).andDo(print()).andExpect(status().isOk());
+//				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 //				.andExpect(content().json(mapper.writeValueAsString(testHoh), true));
-//	}
-//
-//	@Test
-//	public void addHoh() throws Exception {
-//		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(testHoh);
-//		when(hohRepo.findAll()).thenReturn(Collections.singletonList(testHoh));
-//		mockMvc.perform(post("/api/add-receipient").contentType(MediaType.APPLICATION_JSON_UTF8)
-//				.content(mapper.writeValueAsString(testHoh))).andExpect(status().isOk())
-//				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh))));
-//	}
-
+	}
 }

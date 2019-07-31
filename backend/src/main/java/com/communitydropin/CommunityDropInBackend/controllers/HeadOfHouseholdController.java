@@ -17,7 +17,7 @@ public class HeadOfHouseholdController {
 	@Autowired
 	HeadOfHouseholdRepository hohRepo;
 	
-	@GetMapping("/receipients")
+	@GetMapping("/recipients")
 	public Iterable<HeadOfHousehold> retrieveAllRecipients(){
 		return hohRepo.findAll();
 	}
@@ -31,26 +31,5 @@ public class HeadOfHouseholdController {
 		hohRepo.save(hoh);
 		return hohRepo.findAll();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	@GetMapping("/receipients/{id}")
-//	public HeadOfHousehold sendReceipient(@PathVariable Long id) {
-//		return hohRepo.findById(id).get();
-//	}
-//	@PostMapping("/add-receipient")
-//	public HeadOfHousehold addHoh(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus, int houseSize, LocalDate dateOfBirth) {
-//		HeadOfHousehold hohToAdd = new HeadOfHousehold(firstName, lastName, address, phoneNumber, deliveryStatus, houseSize, dateOfBirth);
-//		if (hohRepo.findByPhoneNumber(hohToAdd.getPhoneNumber())==null) {
-//			hohRepo.save(hohToAdd);
-//		}
-//		return hohRepo.findByPhoneNumber(hohToAdd.getPhoneNumber());
-//	}
 }
 	
