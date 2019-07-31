@@ -7,24 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <form action="POST">
-			<input type="text" placeholder="Search.." name="search" />
-			<button type="submit">Search</button>
-		</form>
+    <header class='main-header'>
+        
     </header>
     <main>
-        <section>
-            <table>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>DOB</th>
-                    <th>Phone #</th>
-                    <th>Address</th>
-                    <th>Household</th>
-                    <th>Delivery</th>
-                    <th>Eligable</th>
+        <section class='search-bar'>
+            <form class='recipient-search'>
+			    <input class='recipient-search__input' type="text" placeholder="Search.." name="search" />
+			    <button class='recipient-search__submit' type="submit">Search</button>
+		    </form>
+        </section>
+        <section class='recipient'>
+            <table class='results-table'>
+                <tr class='table-head'>
+                    <th class= 'table-head__firstname'>First Name</th>
+                    <th class= 'table-head__lastname'>Last Name</th>
+                    <th class= 'table-head__dob'>DOB</th>
+                    <th class= 'table-head__phone'>Phone #</th>
+                    <th class= 'table-head__address'>Address</th>
+                    <th class= 'table-head__household'>Household</th>
+                    <th class= 'table-head__delivery'>Delivery</th>
+                    <th class= 'table-head__eligible'>Eligable</th>
                 </tr>
 
                 <tr>
