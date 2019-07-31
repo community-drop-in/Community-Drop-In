@@ -3,8 +3,7 @@ package com.communitydropin.CommunityDropInBackend.integrationtests;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,8 +28,7 @@ public class JpaEntityMappingsTest {
 	
 	@Test
 	public void shoudLoadAndSaveHoh() {
-		Calendar testCalendar = new GregorianCalendar(2013,1,2);
-		HeadOfHousehold hoh = new HeadOfHousehold("", "", "", 22332L, false, 5, testCalendar);
+		HeadOfHousehold hoh = new HeadOfHousehold("", "", "", 22332L, false, 5, LocalDate.of(2013, 1, 2));
 		hohRepo.save(hoh);
 		entityManager.flush();
 		entityManager.clear();
