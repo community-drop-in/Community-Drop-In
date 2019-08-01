@@ -24,18 +24,26 @@ public class HeadOfHouseholdController {
 
 	@Autowired
 	HeadOfHouseholdRepository hohRepo;
-	
+
 	@GetMapping("/recipients")
-	public Iterable<HeadOfHousehold> retrieveAllRecipients(){
+	public Iterable<HeadOfHousehold> retrieveAllRecipients() {
 		return hohRepo.findAll();
 	}
+
 	@GetMapping("/recipients/{id}")
 	public HeadOfHousehold retrieveSingleRecipient(@PathVariable Long id) {
-		
+
 		return hohRepo.findById(id).get();
 	}
+
 	@PostMapping("/recipients")
-	public Iterable <HeadOfHousehold> postSingleRecipient(@RequestBody String hohDataString) throws JSONException {
+	public Iterable<HeadOfHousehold> postSingleRecipient(@RequestBody String hohDataString) throws JSONException {
+		HeadOfHousehold newHoh = makeHohFromDataJson(hohDataString);
+		hohRepo.save(newHoh);
+		return hohRepo.findAll();
+	}
+
+	private HeadOfHousehold makeHohFromDataJson(String hohDataString) throws JSONException {
 		Object hohDataObject = JSONParser.parseJSON(hohDataString);
 		JSONObject hohDataJson = (JSONObject) hohDataObject;
 		String firstName = hohDataJson.getString("firstName");
@@ -46,12 +54,8 @@ public class HeadOfHouseholdController {
 		int houseSize = hohDataJson.getInt("houseSize");
 		String dateOfBirthString = hohDataJson.getString("dateOfBirth");
 		LocalDate dateOfBirth = LocalDate.parse(dateOfBirthString);
-		
 		HeadOfHousehold newHoh;
-//		newHoh = new HeadOfHousehold(firstName, lastName, address, phoneNumber, deliveryStatus, houseSize, dateOfBirth);
 		newHoh = new HeadOfHousehold(firstName, lastName, address, phoneNumber, deliveryStatus, houseSize, dateOfBirth);
-		hohRepo.save(newHoh);
-		return hohRepo.findAll();
+		return newHoh;
 	}
 }
-	
