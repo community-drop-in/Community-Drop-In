@@ -66,7 +66,7 @@ public class HeadOfHousehold {
 		return id;
 	}
 	public String getDateofBirth() {
-		return dateOfBirth.format(DateTimeFormatter.BASIC_ISO_DATE);
+		return dateOfBirth.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
 	public List<Calendar> getDatesReceived() {
 		return datesReceived;
