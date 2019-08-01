@@ -40,9 +40,11 @@ public class HeadOfHouseholdController {
 		JSONObject hohDataJson = (JSONObject) hohDataObject;
 		String firstName = hohDataJson.getString("firstName");
 		String lastName = hohDataJson.getString("lastName");
+		String address = hohDataJson.getString("address");
+		Long phoneNumber = hohDataJson.getLong("phoneNumber");
 		HeadOfHousehold newHoh;
 //		newHoh = new HeadOfHousehold(firstName, lastName, address, phoneNumber, deliveryStatus, houseSize, dateOfBirth);
-		newHoh = new HeadOfHousehold(firstName, lastName, "address", 6145551212L, true, 5, LocalDate.of(1900, 1, 1));
+		newHoh = new HeadOfHousehold(firstName, lastName, address, phoneNumber, true, 5, LocalDate.of(1900, 1, 1));
 		hohRepo.save(newHoh);
 		return hohRepo.findAll();
 	}
