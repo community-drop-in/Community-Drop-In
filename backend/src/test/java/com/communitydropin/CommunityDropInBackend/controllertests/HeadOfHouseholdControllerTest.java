@@ -29,6 +29,16 @@ public class HeadOfHouseholdControllerTest {
 	@Mock
 	private HeadOfHousehold hoh;
 	
+	private final String JOHNDOEJSONPOST = "{"
+			+ "\"firstName\": \"John\","
+			+ "\"lastName\": \"Doe\","
+			+ "\"address\": \"123 Anywhere Street\","
+			+ "\"phoneNumber\": 6145551212,"
+			+ "\"deliveryStatus\": false,"
+			+ "\"houseSize\": 4,"
+			+ "\"dateOfBirth\": \"1995-10-08\""
+			+ "}";
+	
 	@Before
 	public void setup () {
 		MockitoAnnotations.initMocks(this);
@@ -50,9 +60,7 @@ public class HeadOfHouseholdControllerTest {
 	}
 	@Test
 	public void hohControllerShouldPostSingleHoh() {
-		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(hoh);
-		when(hohRepo.findAll()).thenReturn(Collections.singletonList(hoh));
-		assertThat(underTest.postSingleRecipient(hoh), is(Collections.singletonList(hoh)));
+		
 	}
 
 }

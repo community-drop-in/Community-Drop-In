@@ -1,5 +1,10 @@
 package com.communitydropin.CommunityDropInBackend.controllers;
 
+import java.time.LocalDate;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.skyscreamer.jsonassert.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +35,14 @@ public class HeadOfHouseholdController {
 		return hohRepo.findById(id).get();
 	}
 	@PostMapping("/recipients")
-	public Iterable <HeadOfHousehold> postSingleRecipient(@RequestBody HeadOfHousehold hoh) {
-		hohRepo.save(hoh);
+	public Iterable <HeadOfHousehold> postSingleRecipient(@RequestBody String hohDataString) throws JSONException {
+		Object hohDataObject = JSONParser.parseJSON(hohDataString);
+		JSONObject hohDataJson = (JSONObject) hohDataObject;
+		String firstName = hohDataJson.getString("firstName");
+		HeadOfHousehold newHoh;
+//		newHoh = new HeadOfHousehold(firstName, lastName, address, phoneNumber, deliveryStatus, houseSize, dateOfBirth);
+		newHoh = new HeadOfHousehold(firstName, "lastName", "address", 6145551212L, true, 5, LocalDate.of(1900, 1, 1));
+		hohRepo.save(newHoh);
 		return hohRepo.findAll();
 	}
 }
