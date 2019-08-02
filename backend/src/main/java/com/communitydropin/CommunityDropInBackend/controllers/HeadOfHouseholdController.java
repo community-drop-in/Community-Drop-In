@@ -59,7 +59,7 @@ public class HeadOfHouseholdController {
 		newHoh = new HeadOfHousehold(firstName, lastName, address, phoneNumber, deliveryStatus, houseSize, dateOfBirth);
 		return newHoh;
 	}
-	@PatchMapping("/recipients/{id}")
+	@PatchMapping("/recipients/{id}/update-address")
 	public HeadOfHousehold patchSingleRecipientAddress(@PathVariable() Long id, @RequestBody String newAddress) throws Exception{
 		Optional<HeadOfHousehold> retrievedOptional = hohRepo.findById(id);
 		HeadOfHousehold retrievedHoh;

@@ -59,6 +59,11 @@ public class HeadOfHouseHoldWebLayerTest {
 
 	private HeadOfHousehold johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street", 6145551212L, false, 4,
 			LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoeWithNewPhoneNumber = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551234L, false, 4,
+			LocalDate.parse("1995-10-08"));
+
+	private final String NEWPHONENUMBERJSONPATCH = "{\"phoneNumber\": 6145551234}";
 	
 
 	@Before
@@ -95,9 +100,17 @@ public class HeadOfHouseHoldWebLayerTest {
 	public void patchSingleRecipientAddress() throws Exception {
 		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
 		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewAddress);
-		mockMvc.perform(patch("/api/recipients/1").contentType(MediaType.APPLICATION_JSON_UTF8)
+		mockMvc.perform(patch("/api/recipients/1/update-address").contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(NEWADDRESSJSONPATCH)).andExpect(status().isOk())
 		.andExpect(content().contentType("application/json;charset=UTF-8"))
 		.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewAddress)));
+	}
+	
+	@Test
+	public void patchSingleRecipientPhoneNumber() throws Exception {
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewPhoneNumber);
+		mockMvc.perform(patch("/api/recipients/1/update-phone-number").contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(NEWPHONENUMBERJSONPATCH)).andExpect(status().isOk());
 	}
 }
