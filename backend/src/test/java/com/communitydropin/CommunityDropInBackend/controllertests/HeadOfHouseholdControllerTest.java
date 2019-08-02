@@ -3,10 +3,9 @@ package com.communitydropin.CommunityDropInBackend.controllertests;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.any;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -37,17 +36,8 @@ public class HeadOfHouseholdControllerTest {
 	private final String JOHNDOEJSONPOST = "{" + "\"firstName\": \"John\"," + "\"lastName\": \"Doe\","
 			+ "\"address\": \"123 Anywhere Street\"," + "\"phoneNumber\": 6145551212," + "\"deliveryStatus\": false,"
 			+ "\"houseSize\": 4," + "\"dateOfBirth\": \"1995-10-08\"" + "}";
-	
-	private final String NEWADDRESSJSONPATCH = "{"
-			+ "\"address\": \"345 Anywhere Street\"}";
 
 	private HeadOfHousehold johnDoe = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
-			LocalDate.parse("1995-10-08"));
-
-	private HeadOfHousehold johnDoe6145551234 = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551234L, false, 4,
-			LocalDate.parse("1995-10-08"));
-
-	private HeadOfHousehold johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street", 6145551212L, false, 4,
 			LocalDate.parse("1995-10-08"));
 
 	@Before

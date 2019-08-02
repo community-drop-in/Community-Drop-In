@@ -88,6 +88,12 @@ public class HeadOfHousehold {
 	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	public void setHouseSize(int houseSize) {
+		this.houseSize = houseSize;
+
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -161,9 +167,5 @@ public class HeadOfHousehold {
 				+ address + ", deliveryStatus=" + deliveryStatus + ", houseSize=" + houseSize + ", dateOfBirth="
 				+ dateOfBirth + ", datesReceived=" + datesReceived + ", firstName=" + firstName + "]";
 	}
-
-	
-		
-
 
 }
