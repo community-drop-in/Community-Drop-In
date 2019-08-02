@@ -79,7 +79,14 @@ public class HeadOfHouseholdController {
 		retrievedHoh.setHouseSize(houseSize);
 		return hohRepo.save(retrievedHoh);
 	}
-
+	@PatchMapping("/recipients/{id}/update-delivery-status")
+	public HeadOfHousehold patchSingleRecipientDeliveryStatus(@PathVariable Long id) throws Exception {
+		HeadOfHousehold retrievedHoh = idToHohJson(id);
+		retrievedHoh.changeDeliveryStatus(); 
+		return hohRepo.save(retrievedHoh);
+		
+	}
+	
 	private HeadOfHousehold makeHohFromDataJson(String hohDataString) throws JSONException {
 		Object hohDataObject = JSONParser.parseJSON(hohDataString);
 		JSONObject hohDataJson = (JSONObject) hohDataObject;

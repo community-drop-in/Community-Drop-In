@@ -130,9 +130,8 @@ public class HeadOfHouseHoldWebLayerTest {
 		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
 		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewDeliveryStatus);
 		mockMvc.perform(patch("/api/recipients/1/update-delivery-status"))
-				.andExpect(status().isOk());
-//				.andExpect(content().contentType("application/json;charset=UTF=8"))
-//				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewDeliveryStatus)));
+				.andExpect(status().isOk())
+				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewDeliveryStatus)));
 		
 	}
 }
