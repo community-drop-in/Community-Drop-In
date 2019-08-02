@@ -3,6 +3,7 @@ package com.communitydropin.CommunityDropInBackend.integrationtests;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -40,6 +41,31 @@ public class HeadOfHouseHoldWebLayerTest {
 	private HeadOfHousehold testHoh;
 	private ObjectMapper mapper = new ObjectMapper();
 
+	private final String JOHNDOEJSONPOST = "{" + "\"firstName\": \"John\"," + "\"lastName\": \"Doe\","
+			+ "\"address\": \"123 Anywhere Street\"," + "\"phoneNumber\": 6145551212," + "\"deliveryStatus\": false,"
+			+ "\"houseSize\": 4," + "\"dateOfBirth\": \"1995-10-08\"" + "}";
+
+	private final String NEWADDRESSJSONPATCH = "{" + "\"address\": \"345 Anywhere Street\"}";
+
+	private final String NEWPHONENUMBERJSONPATCH = "{\"phoneNumber\": 6145551234}";
+	
+	private final String NEWHOUSESIZEJSONPATCH = "{\"houseSize\": 5}";
+
+	private HeadOfHousehold johnDoe = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
+			LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street",
+			6145551212L, false, 4, LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoeWithNewPhoneNumber = new HeadOfHousehold("John", "Doe", "123 Anywhere Street",
+			6145551234L, false, 4, LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoeWithNewHouseSize = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 5,
+			LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoeWithNewDeliveryStatus = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, true, 4,
+			LocalDate.parse("1995-10-08"));;
+
 	@Before
 	public void setup() {
 		testHoh = new HeadOfHousehold("", "", "", 123L, false, 2, LocalDate.of(2019, 8, 02));
@@ -63,12 +89,49 @@ public class HeadOfHouseHoldWebLayerTest {
 
 	@Test
 	public void postSingleRecipient() throws Exception {
-		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(testHoh);
-		when(hohRepo.findAll()).thenReturn(Collections.singletonList(testHoh));
-		mockMvc.perform(post("/api/recipients").contentType(MediaType.APPLICATION_JSON_UTF8)
-				.content(mapper.writeValueAsString(testHoh))).andExpect(status().isOk())
-		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoe);
+		mockMvc.perform(post("/api/recipients").contentType(MediaType.APPLICATION_JSON_UTF8).content(JOHNDOEJSONPOST))
+				.andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(content().json(mapper.writeValueAsString(johnDoe)));
+	}
 
+	@Test
+	public void patchSingleRecipientAddress() throws Exception {
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewAddress);
+		mockMvc.perform(patch("/api/recipients/1/update-address").contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(NEWADDRESSJSONPATCH)).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewAddress)));
+	}
+
+	@Test
+	public void patchSingleRecipientPhoneNumber() throws Exception {
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewPhoneNumber);
+		mockMvc.perform(patch("/api/recipients/1/update-phone-number").contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(NEWPHONENUMBERJSONPATCH)).andExpect(status().isOk())
+				.andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewPhoneNumber)));
+	}
+	
+	@Test
+	public void patchSingleRecipientHouseSize() throws Exception {
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewHouseSize);
+		mockMvc.perform(patch("/api/recipients/1/update-house-size").contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(NEWHOUSESIZEJSONPATCH)).andExpect(status().isOk())
+				.andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewHouseSize)));
+	}
+	
+	@Test
+	public void patchSingleRecipientDeliveryStatus() throws Exception {
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewDeliveryStatus);
+		mockMvc.perform(patch("/api/recipients/1/update-delivery-status"))
+				.andExpect(status().isOk())
+				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewDeliveryStatus)));
+		
 	}
 }
