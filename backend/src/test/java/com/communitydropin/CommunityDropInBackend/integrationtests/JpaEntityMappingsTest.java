@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 
 import java.time.LocalDate;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,16 @@ public class JpaEntityMappingsTest {
 	@Autowired
 	private HeadOfHouseholdRepository hohRepo;
 		
+	private HeadOfHousehold hoh;
+	
+	@Before
+	public void setup () {
+		hoh = new HeadOfHousehold("", "", "", 22332L, false, 5, LocalDate.of(2013, 1, 2));
+		
+	}
 	
 	@Test
 	public void shoudLoadAndSaveHoh() {
-		HeadOfHousehold hoh = new HeadOfHousehold("", "", "", 22332L, false, 5, LocalDate.of(2013, 1, 2));
 		hohRepo.save(hoh);
 		entityManager.flush();
 		entityManager.clear();
