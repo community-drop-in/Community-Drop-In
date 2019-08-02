@@ -59,20 +59,40 @@ public class HeadOfHouseholdController {
 		newHoh = new HeadOfHousehold(firstName, lastName, address, phoneNumber, deliveryStatus, houseSize, dateOfBirth);
 		return newHoh;
 	}
+
 	@PatchMapping("/recipients/{id}/update-address")
-	public HeadOfHousehold patchSingleRecipientAddress(@PathVariable() Long id, @RequestBody String newAddress) throws Exception{
+	public HeadOfHousehold patchSingleRecipientAddress(@PathVariable() Long id, @RequestBody String newAddress)
+			throws Exception {
 		Optional<HeadOfHousehold> retrievedOptional = hohRepo.findById(id);
 		HeadOfHousehold retrievedHoh;
-		if(retrievedOptional.isPresent()) {
+		if (retrievedOptional.isPresent()) {
 			retrievedHoh = retrievedOptional.get();
-		}
-		else { throw new Exception("No such Head of Household.");
+		} else {
+			throw new Exception("No such Head of Household.");
 		}
 		Object newAddressObject = JSONParser.parseJSON(newAddress);
 		JSONObject newAddressJson = (JSONObject) newAddressObject;
 		String address = newAddressJson.getString("address");
 		retrievedHoh.setAddress(address);
 		return hohRepo.save(retrievedHoh);
-		
+
+	}
+	@PatchMapping("/recipients/{id}/update-phone-number")
+	public HeadOfHousehold patchSingleRecipientPhoneNumber(@PathVariable() Long id, @RequestBody String newPhoneNumber)
+			throws Exception {
+		Optional<HeadOfHousehold> retrievedOptional = hohRepo.findById(id);
+		HeadOfHousehold retrievedHoh;
+		if (retrievedOptional.isPresent()) {
+			retrievedHoh = retrievedOptional.get();
+
+		} else {
+			throw new Exception("No such Head of Household");
+		}
+		Object newPhoneNumberObject = JSONParser.parseJSON(newPhoneNumber);
+		JSONObject newPhoneNumberJson = (JSONObject) newPhoneNumberObject;
+		Long phoneNumber = newPhoneNumberJson.getLong("phoneNumber");
+		retrievedHoh.setPhoneNumber(phoneNumber);
+		return hohRepo.save(retrievedHoh);
+
 	}
 }

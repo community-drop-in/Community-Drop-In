@@ -85,6 +85,9 @@ public class HeadOfHousehold {
 		this.address = address;
 	}
 
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -158,6 +161,9 @@ public class HeadOfHousehold {
 				+ address + ", deliveryStatus=" + deliveryStatus + ", houseSize=" + houseSize + ", dateOfBirth="
 				+ dateOfBirth + ", datesReceived=" + datesReceived + ", firstName=" + firstName + "]";
 	}
+
+	
+		
 
 
 }

@@ -43,28 +43,26 @@ public class HeadOfHouseHoldWebLayerTest {
 
 	private HeadOfHousehold testHoh;
 	private ObjectMapper mapper = new ObjectMapper();
-	
+
 	private final String JOHNDOEJSONPOST = "{" + "\"firstName\": \"John\"," + "\"lastName\": \"Doe\","
 			+ "\"address\": \"123 Anywhere Street\"," + "\"phoneNumber\": 6145551212," + "\"deliveryStatus\": false,"
 			+ "\"houseSize\": 4," + "\"dateOfBirth\": \"1995-10-08\"" + "}";
-	
-	private final String NEWADDRESSJSONPATCH = "{"
-			+ "\"address\": \"345 Anywhere Street\"}";
+
+	private final String NEWADDRESSJSONPATCH = "{" + "\"address\": \"345 Anywhere Street\"}";
+
+	private final String NEWPHONENUMBERJSONPATCH = "{\"phoneNumber\": 6145551234}";
 
 	private HeadOfHousehold johnDoe = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
 			LocalDate.parse("1995-10-08"));
 
-	private HeadOfHousehold johnDoe6145551234 = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551234L, false, 4,
-			LocalDate.parse("1995-10-08"));
+	private HeadOfHousehold johnDoe6145551234 = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551234L,
+			false, 4, LocalDate.parse("1995-10-08"));
 
-	private HeadOfHousehold johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street", 6145551212L, false, 4,
-			LocalDate.parse("1995-10-08"));
+	private HeadOfHousehold johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street",
+			6145551212L, false, 4, LocalDate.parse("1995-10-08"));
 
-	private HeadOfHousehold johnDoeWithNewPhoneNumber = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551234L, false, 4,
-			LocalDate.parse("1995-10-08"));
-
-	private final String NEWPHONENUMBERJSONPATCH = "{\"phoneNumber\": 6145551234}";
-	
+	private HeadOfHousehold johnDoeWithNewPhoneNumber = new HeadOfHousehold("John", "Doe", "123 Anywhere Street",
+			6145551234L, false, 4, LocalDate.parse("1995-10-08"));
 
 	@Before
 	public void setup() {
@@ -90,22 +88,21 @@ public class HeadOfHouseHoldWebLayerTest {
 	@Test
 	public void postSingleRecipient() throws Exception {
 		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoe);
-		mockMvc.perform(post("/api/recipients").contentType(MediaType.APPLICATION_JSON_UTF8)
-				.content(JOHNDOEJSONPOST)).andExpect(status().isOk())
-		.andExpect(content().contentType("application/json;charset=UTF-8"))
-		.andExpect(content().json(mapper.writeValueAsString(johnDoe)));
+		mockMvc.perform(post("/api/recipients").contentType(MediaType.APPLICATION_JSON_UTF8).content(JOHNDOEJSONPOST))
+				.andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(content().json(mapper.writeValueAsString(johnDoe)));
 	}
-	
+
 	@Test
 	public void patchSingleRecipientAddress() throws Exception {
 		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
 		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewAddress);
 		mockMvc.perform(patch("/api/recipients/1/update-address").contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(NEWADDRESSJSONPATCH)).andExpect(status().isOk())
-		.andExpect(content().contentType("application/json;charset=UTF-8"))
-		.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewAddress)));
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewAddress)));
 	}
-	
+
 	@Test
 	public void patchSingleRecipientPhoneNumber() throws Exception {
 		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
