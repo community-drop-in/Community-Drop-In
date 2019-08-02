@@ -31,16 +31,18 @@ public class JpaEntityMappingsTest {
 	@Before
 	public void setup () {
 		hoh = new HeadOfHousehold("", "", "", 22332L, false, 5, LocalDate.of(2013, 1, 2));
-		
+		hohRepo.save(hoh);
+		flushAndClearEntityManager();
 	}
 	
 	@Test
 	public void shoudLoadAndSaveHoh() {
-		hohRepo.save(hoh);
-		entityManager.flush();
-		entityManager.clear();
-		
 		HeadOfHousehold foundHoh = hohRepo.findById(hoh.getId()).get();
 		assertThat(foundHoh, is(hoh));
+	}
+
+	private void flushAndClearEntityManager() {
+		entityManager.flush();
+		entityManager.clear();
 	}
 }
