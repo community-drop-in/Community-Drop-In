@@ -3,6 +3,7 @@ package com.communitydropin.CommunityDropInBackend.integrationtests;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -23,6 +24,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import com.communitydropin.CommunityDropInBackend.HeadOfHousehold;
 import com.communitydropin.CommunityDropInBackend.HeadOfHouseholdRepository;
@@ -87,5 +89,12 @@ public class HeadOfHouseHoldWebLayerTest {
 				.content(JOHNDOEJSONPOST)).andExpect(status().isOk())
 		.andExpect(content().contentType("application/json;charset=UTF-8"))
 		.andExpect(content().json(mapper.writeValueAsString(johnDoe)));
+	}
+	
+	@Test
+	public void patchSingleRecipientAddress() throws Exception {
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewAddress);
+		mockMvc.perform(patch("/api/recipients/1").contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(NEWADDRESSJSONPATCH)).andExpect(status().isOk());
 	}
 }
