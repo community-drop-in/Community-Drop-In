@@ -37,10 +37,9 @@ public class HeadOfHouseholdController {
 	}
 
 	@PostMapping("/recipients")
-	public Iterable<HeadOfHousehold> postSingleRecipient(@RequestBody String hohDataString) throws JSONException {
+	public HeadOfHousehold postSingleRecipient(@RequestBody String hohDataString) throws JSONException {
 		HeadOfHousehold newHoh = makeHohFromDataJson(hohDataString);
-		hohRepo.save(newHoh);
-		return hohRepo.findAll();
+		return hohRepo.save(newHoh);
 	}
 
 	private HeadOfHousehold makeHohFromDataJson(String hohDataString) throws JSONException {
