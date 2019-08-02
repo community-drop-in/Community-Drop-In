@@ -61,6 +61,9 @@ public class HeadOfHouseHoldWebLayerTest {
 			6145551234L, false, 4, LocalDate.parse("1995-10-08"));
 
 	private HeadOfHousehold johnDoeWithNewHouseSize = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 5,
+			LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoeWithNewDeliveryStatus = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, true, 4,
 			LocalDate.parse("1995-10-08"));;
 
 	@Before
@@ -120,5 +123,16 @@ public class HeadOfHouseHoldWebLayerTest {
 				.content(NEWHOUSESIZEJSONPATCH)).andExpect(status().isOk())
 				.andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8"))
 				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewHouseSize)));
+	}
+	
+	@Test
+	public void patchSingleRecipientDeliveryStatus() throws Exception {
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewDeliveryStatus);
+		mockMvc.perform(patch("/api/recipients/1/update-delivery-status"))
+				.andExpect(status().isOk());
+//				.andExpect(content().contentType("application/json;charset=UTF=8"))
+//				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewDeliveryStatus)));
+		
 	}
 }
