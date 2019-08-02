@@ -12,9 +12,11 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Optional;
 
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.skyscreamer.jsonassert.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -39,6 +41,23 @@ public class HeadOfHouseHoldWebLayerTest {
 
 	private HeadOfHousehold testHoh;
 	private ObjectMapper mapper = new ObjectMapper();
+	
+	private final String JOHNDOEJSONPOST = "{" + "\"firstName\": \"John\"," + "\"lastName\": \"Doe\","
+			+ "\"address\": \"123 Anywhere Street\"," + "\"phoneNumber\": 6145551212," + "\"deliveryStatus\": false,"
+			+ "\"houseSize\": 4," + "\"dateOfBirth\": \"1995-10-08\"" + "}";
+	
+	private final String NEWADDRESSJSONPATCH = "{"
+			+ "\"address\": \"345 Anywhere Street\"}";
+
+	private HeadOfHousehold johnDoe = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
+			LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoe6145551234 = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551234L, false, 4,
+			LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street", 6145551212L, false, 4,
+			LocalDate.parse("1995-10-08"));
+	
 
 	@Before
 	public void setup() {
@@ -63,12 +82,10 @@ public class HeadOfHouseHoldWebLayerTest {
 
 	@Test
 	public void postSingleRecipient() throws Exception {
-		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(testHoh);
-		when(hohRepo.findAll()).thenReturn(Collections.singletonList(testHoh));
+		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoe);
 		mockMvc.perform(post("/api/recipients").contentType(MediaType.APPLICATION_JSON_UTF8)
-				.content(mapper.writeValueAsString(testHoh))).andExpect(status().isOk())
-		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-		.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
-
+				.content(JOHNDOEJSONPOST)).andExpect(status().isOk())
+		.andExpect(content().contentType("application/json;charset=UTF-8"))
+		.andExpect(content().json(mapper.writeValueAsString(johnDoe)));
 	}
 }

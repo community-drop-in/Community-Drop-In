@@ -37,12 +37,18 @@ public class HeadOfHouseholdControllerTest {
 	private final String JOHNDOEJSONPOST = "{" + "\"firstName\": \"John\"," + "\"lastName\": \"Doe\","
 			+ "\"address\": \"123 Anywhere Street\"," + "\"phoneNumber\": 6145551212," + "\"deliveryStatus\": false,"
 			+ "\"houseSize\": 4," + "\"dateOfBirth\": \"1995-10-08\"" + "}";
+	
+	private final String NEWADDRESSJSONPATCH = "{"
+			+ "\"address\": \"345 Anywhere Street\"}";
 
 	private HeadOfHousehold johnDoe = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
 			LocalDate.parse("1995-10-08"));
 
 	private HeadOfHousehold johnDoe6145551234 = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551234L, false, 4,
-			LocalDate.parse("1995-10-08"));;
+			LocalDate.parse("1995-10-08"));
+
+	private HeadOfHousehold johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street", 6145551212L, false, 4,
+			LocalDate.parse("1995-10-08"));
 
 	@Before
 	public void setup() {
@@ -70,15 +76,6 @@ public class HeadOfHouseholdControllerTest {
 		HeadOfHousehold postSingleRecipientReturn = underTest.postSingleRecipient(JOHNDOEJSONPOST);
 		verify(hohRepo).save(johnDoe);
 		assertThat(postSingleRecipientReturn, is(johnDoe));
-	}
-
-	@Test
-	public void hohControllerShouldPatchSinglePhoneNumber() throws JSONException {
-		when(hohRepo.save(johnDoe6145551234)).thenReturn(johnDoe6145551234);
-		underTest.postSingleRecipient(JOHNDOEJSONPOST);
-		Long id = johnDoe.getId();
-		assertThat(underTest.patchSingleRecipientPhoneNumber(id , 6145551234L), is(johnDoe6145551234));
-		
 	}
 
 }
