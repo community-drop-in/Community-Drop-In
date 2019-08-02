@@ -93,8 +93,11 @@ public class HeadOfHouseHoldWebLayerTest {
 	
 	@Test
 	public void patchSingleRecipientAddress() throws Exception {
+		when(hohRepo.findById(1L)).thenReturn(Optional.of(johnDoe));
 		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoeWithNewAddress);
 		mockMvc.perform(patch("/api/recipients/1").contentType(MediaType.APPLICATION_JSON_UTF8)
-				.content(NEWADDRESSJSONPATCH)).andExpect(status().isOk());
+				.content(NEWADDRESSJSONPATCH)).andExpect(status().isOk())
+		.andExpect(content().contentType("application/json;charset=UTF-8"))
+		.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewAddress)));
 	}
 }

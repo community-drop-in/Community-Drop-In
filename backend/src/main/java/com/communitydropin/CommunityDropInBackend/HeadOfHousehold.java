@@ -17,7 +17,7 @@ public class HeadOfHousehold {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String lastName;
 	private Long phoneNumber;
 	private String address;
@@ -25,11 +25,11 @@ public class HeadOfHousehold {
 	private int houseSize;
 	private LocalDate dateOfBirth;
 	@ElementCollection
-	private List<Calendar> datesReceived; //if im wrong we will come back to fix it
+	private List<Calendar> datesReceived; // if im wrong we will come back to fix it
 	private String firstName;
-	
-	
-	public HeadOfHousehold(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus, int houseSize, LocalDate dateOfBirth) {
+
+	public HeadOfHousehold(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus,
+			int houseSize, LocalDate dateOfBirth) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -38,39 +38,53 @@ public class HeadOfHousehold {
 		this.houseSize = houseSize;
 		this.dateOfBirth = dateOfBirth;
 		this.datesReceived = new ArrayList<Calendar>();
-}
+	}
+
 	@SuppressWarnings("unused")
 	private HeadOfHousehold() {
-		
+
 	}
 
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public Long getPhoneNumber() {
-		return phoneNumber;	
+		return phoneNumber;
 	}
+
 	public boolean isDeliveryStatus() {
 		return deliveryStatus;
 	}
+
 	public int getHouseSize() {
 		return houseSize;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public String getDateofBirth() {
 		return dateOfBirth.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
+
 	public List<Calendar> getDatesReceived() {
 		return datesReceived;
 	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -86,6 +100,7 @@ public class HeadOfHousehold {
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -136,13 +151,13 @@ public class HeadOfHousehold {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "HeadOfHousehold [id=" + id + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", address="
 				+ address + ", deliveryStatus=" + deliveryStatus + ", houseSize=" + houseSize + ", dateOfBirth="
 				+ dateOfBirth + ", datesReceived=" + datesReceived + ", firstName=" + firstName + "]";
 	}
-	
 
-	
+
 }
