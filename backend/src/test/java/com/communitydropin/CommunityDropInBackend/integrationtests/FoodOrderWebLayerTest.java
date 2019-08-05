@@ -70,8 +70,8 @@ public class FoodOrderWebLayerTest {
 	@Test
 	public void shouldBeAbleToREtrieveSingleFoodOrder() throws Exception {
 		when(foodOrderRepo.findById(1L)).thenReturn(Optional.of(foodOrder));
-		mockMvc.perform(get("/api/food-orders/1")).andDo(print()).andExpect(status().isOk());
-//		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-//		.andExpect(content().json(mapper.writeValueAsString(foodOrder), true));
+		mockMvc.perform(get("/api/food-orders/1")).andDo(print()).andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+		.andExpect(content().json(mapper.writeValueAsString(foodOrder), true));
 	}
 }
