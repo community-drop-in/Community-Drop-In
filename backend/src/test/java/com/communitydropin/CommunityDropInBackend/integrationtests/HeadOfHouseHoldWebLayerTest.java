@@ -51,24 +51,31 @@ public class HeadOfHouseHoldWebLayerTest {
 	
 	private final String NEWHOUSESIZEJSONPATCH = "{\"houseSize\": 5}";
 
-	private HeadOfHousehold johnDoe = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
-			LocalDate.parse("1995-10-08"));
+	private HeadOfHousehold johnDoe;
 
-	private HeadOfHousehold johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street",
-			6145551212L, false, 4, LocalDate.parse("1995-10-08"));
+	private HeadOfHousehold johnDoeWithNewAddress;
 
-	private HeadOfHousehold johnDoeWithNewPhoneNumber = new HeadOfHousehold("John", "Doe", "123 Anywhere Street",
-			6145551234L, false, 4, LocalDate.parse("1995-10-08"));
+	private HeadOfHousehold johnDoeWithNewPhoneNumber;
 
-	private HeadOfHousehold johnDoeWithNewHouseSize = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 5,
-			LocalDate.parse("1995-10-08"));
+	private HeadOfHousehold johnDoeWithNewHouseSize;
 
-	private HeadOfHousehold johnDoeWithNewDeliveryStatus = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, true, 4,
-			LocalDate.parse("1995-10-08"));;
+	private HeadOfHousehold johnDoeWithNewDeliveryStatus;
 
 	@Before
 	public void setup() {
 		testHoh = new HeadOfHousehold("", "", "", 123L, false, 2, LocalDate.of(2019, 8, 02));
+		johnDoe = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
+				LocalDate.parse("1995-10-08"));
+		johnDoeWithNewAddress = new HeadOfHousehold("John", "Doe", "345 Nowhere Street",
+				6145551212L, false, 4, LocalDate.parse("1995-10-08"));
+		johnDoeWithNewPhoneNumber = new HeadOfHousehold("John", "Doe", "123 Anywhere Street",
+				6145551234L, false, 4, LocalDate.parse("1995-10-08"));
+		johnDoeWithNewHouseSize = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 5,
+				LocalDate.parse("1995-10-08"));
+		johnDoeWithNewDeliveryStatus = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, true, 4,
+					LocalDate.parse("1995-10-08"));
+		
+		
 	}
 
 	@Test
