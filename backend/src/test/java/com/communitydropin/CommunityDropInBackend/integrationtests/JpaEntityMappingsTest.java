@@ -14,9 +14,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.communitydropin.CommunityDropInBackend.FoodOrder;
+import com.communitydropin.CommunityDropInBackend.FoodOrderRepository;
 import com.communitydropin.CommunityDropInBackend.HeadOfHousehold;
 import com.communitydropin.CommunityDropInBackend.HeadOfHouseholdRepository;
-import com.communitydropin.CommunityDropInBackend.FoodOrderRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -32,7 +32,7 @@ public class JpaEntityMappingsTest {
 	private FoodOrderRepository foodOrderRepo;
 		
 	private HeadOfHousehold hoh;
-	private FoodOrder order;
+	private FoodOrder foodOrder;
 	
 	@Before
 	public void setup () {
@@ -48,8 +48,12 @@ public class JpaEntityMappingsTest {
 	}
 	@Test
 	public void shouldLoadAndSaveOrder() {
-		FoodOrder foundOrder = foodOrderRepo.findById(order.getId()).get();
-		assertThat(foundOrder, is(order));
+		LocalDate date = LocalDate.of(2000, 1, 1);
+		foodOrder = new FoodOrder(hoh, date);
+		foodOrderRepo.save(foodOrder);
+		flushAndClearEntityManager();
+		FoodOrder foundOrder = foodOrderRepo.findById(foodOrder.getId()).get();
+		assertThat(foundOrder, is(foodOrder));
 	}
 
 	private void flushAndClearEntityManager() {

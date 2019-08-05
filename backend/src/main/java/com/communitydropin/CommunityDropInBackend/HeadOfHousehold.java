@@ -3,13 +3,12 @@ package com.communitydropin.CommunityDropInBackend;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class HeadOfHousehold {
@@ -24,8 +23,8 @@ public class HeadOfHousehold {
 	private boolean deliveryStatus;
 	private int houseSize;
 	private LocalDate dateOfBirth;
-	@ElementCollection
-	private List<Calendar> datesReceived; // if im wrong we will come back to fix it
+	@OneToMany(mappedBy="hoh")
+	private List<FoodOrder> foodOrders;
 	private String firstName;
 
 	public HeadOfHousehold(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus,
@@ -37,7 +36,7 @@ public class HeadOfHousehold {
 		this.deliveryStatus = deliveryStatus;
 		this.houseSize = houseSize;
 		this.dateOfBirth = dateOfBirth;
-		this.datesReceived = new ArrayList<Calendar>();
+		this.foodOrders = new ArrayList<FoodOrder>();
 	}
 
 	@SuppressWarnings("unused")
@@ -77,8 +76,8 @@ public class HeadOfHousehold {
 		return dateOfBirth.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
 
-	public List<Calendar> getDatesReceived() {
-		return datesReceived;
+	public List<FoodOrder> getFoodOrders() {
+		return foodOrders;
 	}
 
 	public void setAddress(String address) {
@@ -104,7 +103,6 @@ public class HeadOfHousehold {
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
-		result = prime * result + ((datesReceived == null) ? 0 : datesReceived.hashCode());
 		result = prime * result + (deliveryStatus ? 1231 : 1237);
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + houseSize;
@@ -133,11 +131,6 @@ public class HeadOfHousehold {
 				return false;
 		} else if (!dateOfBirth.equals(other.dateOfBirth))
 			return false;
-		if (datesReceived == null) {
-			if (other.datesReceived != null)
-				return false;
-		} else if (!datesReceived.equals(other.datesReceived))
-			return false;
 		if (deliveryStatus != other.deliveryStatus)
 			return false;
 		if (firstName == null) {
@@ -164,13 +157,5 @@ public class HeadOfHousehold {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "HeadOfHousehold [id=" + id + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", address="
-				+ address + ", deliveryStatus=" + deliveryStatus + ", houseSize=" + houseSize + ", dateOfBirth="
-				+ dateOfBirth + ", datesReceived=" + datesReceived + ", firstName=" + firstName + "]";
-	}
-
-
+	
 }
