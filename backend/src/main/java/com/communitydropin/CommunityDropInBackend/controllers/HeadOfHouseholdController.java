@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.communitydropin.CommunityDropInBackend.HeadOfHousehold;
-import com.communitydropin.CommunityDropInBackend.HeadOfHouseholdRepository;
+import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
 
 @RestController
 @RequestMapping("/api")
