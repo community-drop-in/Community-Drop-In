@@ -89,6 +89,7 @@ public class FoodOrderWebLayerTest {
 	@Test
 	public void shouldBeAbleToPostSingleFoodOrder() throws Exception {
 		FoodOrder foodOrder2 = new FoodOrder(hoh, LocalDate.of(2019, 8, 2));
+		when(hohRepo.findByPhoneNumber(6145551212L)).thenReturn(hoh);
 		when(foodOrderRepo.save(any(FoodOrder.class))).thenReturn(foodOrder2);
 		mockMvc.perform(post("/api/food-orders").contentType(MediaType.APPLICATION_JSON_UTF8)
 			.content(FOODORDER2JSON)).andExpect(status().isOk());
