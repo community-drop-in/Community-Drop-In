@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-import com.communitydropin.CommunityDropInBackend.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
 
 public class HeadOfHouseholdTest {
 	

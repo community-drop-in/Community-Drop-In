@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
+
 @Service
 public class Initializer implements CommandLineRunner {
 	@Autowired

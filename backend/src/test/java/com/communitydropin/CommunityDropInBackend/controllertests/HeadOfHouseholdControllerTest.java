@@ -18,9 +18,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.communitydropin.CommunityDropInBackend.HeadOfHousehold;
-import com.communitydropin.CommunityDropInBackend.HeadOfHouseholdRepository;
 import com.communitydropin.CommunityDropInBackend.controllers.HeadOfHouseholdController;
+import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
 
 public class HeadOfHouseholdControllerTest {
 
