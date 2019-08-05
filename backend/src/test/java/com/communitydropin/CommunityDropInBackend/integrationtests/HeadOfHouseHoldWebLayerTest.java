@@ -23,9 +23,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.communitydropin.CommunityDropInBackend.HeadOfHousehold;
-import com.communitydropin.CommunityDropInBackend.HeadOfHouseholdRepository;
 import com.communitydropin.CommunityDropInBackend.controllers.HeadOfHouseholdController;
+import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(HeadOfHouseholdController.class)

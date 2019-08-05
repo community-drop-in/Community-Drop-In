@@ -18,10 +18,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.communitydropin.CommunityDropInBackend.FoodOrder;
-import com.communitydropin.CommunityDropInBackend.FoodOrderRepository;
-import com.communitydropin.CommunityDropInBackend.HeadOfHousehold;
-import com.communitydropin.CommunityDropInBackend.HeadOfHouseholdRepository;
+import com.communitydropin.CommunityDropInBackend.entities.FoodOrder;
+import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.repositories.FoodOrderRepository;
+import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
 
 @WebMvcTest(FoodOrder.class)
 @RunWith(SpringRunner.class)

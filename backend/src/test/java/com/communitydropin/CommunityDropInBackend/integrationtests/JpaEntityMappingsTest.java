@@ -13,10 +13,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.communitydropin.CommunityDropInBackend.FoodOrder;
-import com.communitydropin.CommunityDropInBackend.FoodOrderRepository;
-import com.communitydropin.CommunityDropInBackend.HeadOfHousehold;
-import com.communitydropin.CommunityDropInBackend.HeadOfHouseholdRepository;
+import com.communitydropin.CommunityDropInBackend.entities.FoodOrder;
+import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.repositories.FoodOrderRepository;
+import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
