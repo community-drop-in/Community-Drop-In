@@ -1,11 +1,14 @@
 package com.communitydropin.CommunityDropInBackend.entities;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class FoodOrder {
@@ -15,6 +18,7 @@ public class FoodOrder {
 	private Long id;
 
 	@ManyToOne
+	@JsonIgnore
 	private HeadOfHousehold hoh;
 
 	private int size;
@@ -44,8 +48,8 @@ public class FoodOrder {
 		return size;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public String getDate() {
+		return date.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
 
 	@Override
