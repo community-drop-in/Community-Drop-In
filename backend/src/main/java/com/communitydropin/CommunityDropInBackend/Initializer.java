@@ -20,6 +20,9 @@ public class Initializer implements CommandLineRunner {
 		HeadOfHousehold hoh = new HeadOfHousehold("Joe", "Schmmo", "1770 Pennsylvania Ave", 3304529259L, true, 3,
 				LocalDate.of(1995, 10, 7));
 		hohRepo.save(hoh);
+		HeadOfHousehold johnDoe = new HeadOfHousehold("John", "Doe", "771 Ainavlysnnep Ave", 3304529260L, false, 1,
+				LocalDate.of(1995, 10, 7));
+		hohRepo.save(johnDoe);
 	}
 
 }

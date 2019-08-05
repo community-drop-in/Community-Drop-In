@@ -73,7 +73,7 @@ public class HeadOfHousehold {
 		return id;
 	}
 
-	public String getDateofBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
 
