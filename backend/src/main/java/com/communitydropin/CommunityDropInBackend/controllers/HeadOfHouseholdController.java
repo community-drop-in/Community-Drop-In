@@ -48,6 +48,10 @@ public class HeadOfHouseholdController {
 	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByDeliveryStatus() {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "deliveryStatus"));
 	}
+	@GetMapping("/recipients/sortby-house-size")
+	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByHouseSize() {
+		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "houseSize"));
+	}
 
 	@GetMapping("/recipients/{id}")
 	public HeadOfHousehold retrieveSingleRecipient(@PathVariable Long id) {
