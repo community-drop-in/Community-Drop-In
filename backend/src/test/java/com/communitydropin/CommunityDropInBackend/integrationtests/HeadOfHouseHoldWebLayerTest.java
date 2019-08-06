@@ -26,6 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.communitydropin.CommunityDropInBackend.controllers.HeadOfHouseholdController;
 import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
 import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(HeadOfHouseholdController.class)
@@ -140,5 +141,13 @@ public class HeadOfHouseHoldWebLayerTest {
 				.andExpect(status().isOk())
 				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewDeliveryStatus)));
 		
+	}
+	
+	@Test
+	public void fetchCollectionOfHohSortedByFirstName() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll()).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-first-name")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
 	}
 }
