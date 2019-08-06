@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.skyscreamer.jsonassert.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -29,7 +30,7 @@ public class HeadOfHouseholdController {
 
 	@GetMapping("/recipients")
 	public Iterable<HeadOfHousehold> retrieveAllRecipients() {
-		return hohRepo.findAll();
+		return hohRepo.findAll(Sort.by(Sort.Direction.DESC, "lastName"));
 	}
 
 	@GetMapping("/recipients/{id}")
