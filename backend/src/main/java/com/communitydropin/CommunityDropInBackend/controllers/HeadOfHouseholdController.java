@@ -30,7 +30,7 @@ public class HeadOfHouseholdController {
 
 	@GetMapping("/recipients")
 	public Iterable<HeadOfHousehold> retrieveAllRecipients() {
-		return hohRepo.findAll(Sort.by(Sort.Direction.DESC, "lastName"));
+		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
 	}
 
 	@GetMapping("/recipients/{id}")
