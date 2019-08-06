@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -81,7 +82,7 @@ public class HeadOfHouseHoldWebLayerTest {
 
 	@Test
 	public void fetchCollectionOfHoh() throws Exception {
-		when(hohRepo.findAll()).thenReturn(Collections.singletonList(testHoh));
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"))).thenReturn(Collections.singletonList(testHoh));
 		mockMvc.perform(get("/api/recipients")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
@@ -145,8 +146,15 @@ public class HeadOfHouseHoldWebLayerTest {
 	
 	@Test
 	public void fetchCollectionOfHohSortedByFirstName() throws JsonProcessingException, Exception {
-		when(hohRepo.findAll()).thenReturn(Collections.singletonList(testHoh));
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "firstName"))).thenReturn(Collections.singletonList(testHoh));
 		mockMvc.perform(get("/api/recipients/sortby-first-name")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
+	}
+	@Test
+	public void fetchCollectionOfHohSortedByAddress() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "address"))).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-address")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
 	}
