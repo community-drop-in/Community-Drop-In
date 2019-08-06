@@ -16,7 +16,6 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -79,7 +78,7 @@ public class FoodOrderWebLayerTest {
 	}
 
 	@Test
-	public void shouldBeAbleToREtrieveSingleFoodOrder() throws Exception {
+	public void shouldBeAbleToRetrieveSingleFoodOrder() throws Exception {
 		when(foodOrderRepo.findById(1L)).thenReturn(Optional.of(foodOrder));
 		mockMvc.perform(get("/api/food-orders/1")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -92,7 +91,7 @@ public class FoodOrderWebLayerTest {
 		when(hohRepo.findByPhoneNumber(6145551212L)).thenReturn(hoh);
 		when(foodOrderRepo.save(any(FoodOrder.class))).thenReturn(foodOrder2);
 		mockMvc.perform(post("/api/food-orders").contentType(MediaType.APPLICATION_JSON_UTF8)
-			.content(FOODORDER2JSON)).andExpect(status().isOk());
-//			.andExpect(content().json(mapper.writeValueAsString(foodOrder2)));
+			.content(FOODORDER2JSON)).andExpect(status().isOk())
+			.andExpect(content().json(mapper.writeValueAsString(foodOrder2)));
 	}
 }

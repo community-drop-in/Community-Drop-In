@@ -3,6 +3,7 @@ import React from 'react';
 const InfoPage = ({ recipient }) => (
     <div className='container'>
         <h2 className="info-title">{recipient.firstName} {recipient.lastName}</h2>
+        <section className='info-section dob'></section>
     </div>
     );
 

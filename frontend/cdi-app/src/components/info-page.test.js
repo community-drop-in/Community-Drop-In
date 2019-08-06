@@ -28,4 +28,13 @@ describe('Info Page Component', () => {
         expect(entryPoint.querySelector('.info-title').tagName).toMatch('H2');
         expect(entryPoint.querySelector('.info-title').textContent).toMatch('John Doe');
     });
+
+    test('info-section phone should be a section', () => {
+        expect(entryPoint.querySelector('.info-section').tagName).toMatch('SECTION');
+        expect(entryPoint.querySelector('.dob').tagName).toMatch('SECTION');
+    });
+
+    test('info-section phone should be a div', () => {
+
+    })
 });

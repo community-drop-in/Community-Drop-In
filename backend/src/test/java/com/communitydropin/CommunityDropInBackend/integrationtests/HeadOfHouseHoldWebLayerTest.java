@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,6 +27,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.communitydropin.CommunityDropInBackend.controllers.HeadOfHouseholdController;
 import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
 import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(HeadOfHouseholdController.class)
@@ -80,7 +82,7 @@ public class HeadOfHouseHoldWebLayerTest {
 
 	@Test
 	public void fetchCollectionOfHoh() throws Exception {
-		when(hohRepo.findAll()).thenReturn(Collections.singletonList(testHoh));
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"))).thenReturn(Collections.singletonList(testHoh));
 		mockMvc.perform(get("/api/recipients")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
@@ -140,5 +142,48 @@ public class HeadOfHouseHoldWebLayerTest {
 				.andExpect(status().isOk())
 				.andExpect(content().json(mapper.writeValueAsString(johnDoeWithNewDeliveryStatus)));
 		
+	}
+	
+	@Test
+	public void fetchCollectionOfHohSortedByFirstName() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "firstName"))).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-first-name")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
+	}
+	@Test
+	public void fetchCollectionOfHohSortedByAddress() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "address"))).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-address")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
+	}
+	@Test
+	public void fetchCollectionOfHohSortedByPhoneNumber() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "phoneNumber"))).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-phone-number")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
+	}
+	@Test
+	public void fetchCollectionOfHohSortedByDeliveryStatus() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "deliveryStatus"))).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-delivery-status")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
+	}
+	@Test
+	public void fetchCollectionOfHohSortedByHouseSize() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "houseSize"))).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-house-size")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
+	}
+	@Test
+	public void fetchCollectionOfHohSortedByDateOfBirth() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "dateOfBirth"))).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-date-of-birth")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
 	}
 }
