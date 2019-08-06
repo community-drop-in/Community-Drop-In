@@ -6,12 +6,16 @@ class Finder extends Component{
 
     constructor(){
         super()
-        this.state = {recipients: []}
+        this.state = {
+            recipients: [],
+            sortQuery: ''
+        }
     }
 
     getRecipients(){
-        Api().getRequest(Api().getRootURL()+'recipients', (recipients) => {
+        Api().getRequest(Api().getRootURL()+`recipients/${this.state.sortQuery}`, (recipients) => {
             this.setState({recipients})
+            console.log(this.state.sortQuery)
         })
     }
 
@@ -33,9 +37,27 @@ class Finder extends Component{
                         <tbody>
                             <tr className='results-table__head'>
                                 {/* <th className='head__id'>ID</th> */}
-                                <th className='head__lastname'>Last Name</th>
-                                <th className='head__phone'>Phone #</th>
-                                <th className='head__address'>Address</th>
+                                {/* <th className='head__lastname'><button onClick={this.setState({sortQuery: ''})}>Last Name</button></th>
+                                <th className='head__phone'><button onClick={this.setState({sortQuery: 'sortby-phone-number'})}>Phone #</button></th> */}
+                                <th className='head__lastname'><button onClick={
+                                    (e) => {
+                                        e.preventDefault()
+                                        console.log(e)
+                                        this.setState({sortQuery: ''})
+                                        console.log(this.state.sortQuery)
+                                        this.getRecipients()
+                                        // this.getRecipients()
+                                    }}>
+                                        Last Name</button></th>
+                                <th className='head__phone'><button onClick={
+                                    (e) => {
+                                        e.preventDefault()
+                                        this.setState({sortQuery: 'sortby-phone-number'})
+                                        console.log(this.state.sortQuery)
+                                        this.getRecipients()
+                                    }}>
+                                        Phone #</button></th>
+                                <th className='head__address'><button onClick={(() => {this.setState({sortQuery: 'sortby-address'})})}>Address</button></th>
                                 <th className='head__delivery-status'>Delivery</th>
                                 <th className='head__household'>Household</th>
                                 <th className='head__firstname'>First Name</th>
