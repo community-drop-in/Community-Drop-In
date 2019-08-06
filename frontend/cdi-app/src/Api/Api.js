@@ -20,4 +20,12 @@ class Api {
 			.then(callback)
 			.catch(err => console.log(err));
 	}
+
+	getJson(location, callback){
+		return fetch(location)
+			.then((response) => {
+				return response.json();
+			})
+			.then(callback)
+	}
 }

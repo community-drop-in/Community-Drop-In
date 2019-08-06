@@ -6,7 +6,7 @@ class RecipientRow extends Component{
         const { id, lastName, phoneNumber, address, deliveryStatus, houseSize, firstName, dateOfBirth } = this.props.recipient;
         return (
             <tr>
-                <th className='body__id'>{id}</th>
+                {/* <th className='body__id'>{id}</th> */}
                 <th className='body__lastname'>{lastName}</th>
                 <th className='body__phone'>{phoneNumber}</th>
                 <th className='body__address'>{address}</th>
