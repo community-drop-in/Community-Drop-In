@@ -158,4 +158,11 @@ public class HeadOfHouseHoldWebLayerTest {
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
 	}
+	@Test
+	public void fetchCollectionOfHohSortedByPhoneNumber() throws JsonProcessingException, Exception {
+		when(hohRepo.findAll(Sort.by(Sort.Direction.ASC, "phoneNumber"))).thenReturn(Collections.singletonList(testHoh));
+		mockMvc.perform(get("/api/recipients/sortby-phone-number")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(testHoh)), true));
+	}
 }
