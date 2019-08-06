@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import Api from './Api/Api'
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.css';
 // import Counter from './components/counter.jsx'
 import Finder from './components/finder.js'
 
