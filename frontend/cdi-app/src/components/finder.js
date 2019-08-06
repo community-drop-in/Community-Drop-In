@@ -1,18 +1,38 @@
 import React, {Component} from 'react'
 import RecipientRow from './RecipientRow'
+import Api from '../Api/Api'
 
 class Finder extends Component{
 
+    constructor(){
+        super()
+        this.state = {recipients: []}
+    }
+
+    getRecipients(){
+        Api().getRequest(Api().getRootURL()+'recipients', (recipients) => {
+            this.setState({recipients})
+        })
+    }
+
+    componentDidMount(){
+        console.log('App - Mounted')
+        this.getRecipients()
+    }
+
     render(){
-        // const { id, lastName, phoneNumber, address, deliveryStatus, houseSize, firstName, dateOfBirth } = this.props.recipient;
-        console.log(this.props.recipients)
+        console.log('App - Rendered')
+        // const { id, lastName, phoneNumber, address, deliveryStatus, houseSize, firstName, dateOfBirth } = this.state.recipient;
+        
+        // this.getRecipients()
+        console.log(this.state.recipients)
         return (
             <div className='finder'>
                 <section className='recipient-results'>
                     <table className='results-table'>
                         <tbody>
                             <tr className='results-table__head'>
-                                <th className='head__id'>ID</th>
+                                {/* <th className='head__id'>ID</th> */}
                                 <th className='head__lastname'>Last Name</th>
                                 <th className='head__phone'>Phone #</th>
                                 <th className='head__address'>Address</th>
@@ -22,7 +42,7 @@ class Finder extends Component{
                                 <th className='head__dob'>DOB</th>
                                 <th className='head__eligible'>Eligable</th>
                             </tr>
-                            {this.props.recipients.map((recipient)=>{
+                            {this.state.recipients.map((recipient)=>{
                                 return <RecipientRow recipient={recipient} />
                             })}
                             {/* <RecipientRow ></RecipientRow> */}
