@@ -276,3 +276,12 @@ table, th, td{
 .head__eligible{
 
 }
+.recipient-form {
+    flex-direction: column;
+    text-align: center;
+    margin: 5rem;
+    font-size: 20px;
+}
+input {
+    margin-bottom: 20px;
+}
