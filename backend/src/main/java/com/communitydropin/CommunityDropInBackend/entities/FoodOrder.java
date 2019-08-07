@@ -40,8 +40,12 @@ public class FoodOrder {
 		return id;
 	}
 
-	public HeadOfHousehold getHoh() {
-		return hoh;
+	public String getHohFirstName() {
+		return hoh.getFirstName();
+	}
+	
+	public String getHohLastName() {
+		return hoh.getLastName();
 	}
 
 	public int getSize() {

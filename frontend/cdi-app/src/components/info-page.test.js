@@ -111,7 +111,7 @@ describe('Info Page Component', () => {
             expect(entryPoint.querySelector('.delivery-status-title').textContent).toMatch('Delivery:');
         });
         test('delivery-status-value should have text "No".', () => {
-            expect(entryPoint.querySelector())
+            expect(entryPoint.querySelector('.delivery-status-value').textContent).toMatch('No');
         });
     });
 });
