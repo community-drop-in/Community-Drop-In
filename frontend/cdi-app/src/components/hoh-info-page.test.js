@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import InfoPage from './info-page';
+import SingleRecipientPageContent from './info-page';
 
 const recipient = {
     firstName: "John",
@@ -17,7 +17,7 @@ describe('Info Page Component', () => {
 
     beforeEach(() => {
         entryPoint = document.createElement('div');
-        ReactDOM.render(<InfoPage recipient={recipient} />, entryPoint);
+        ReactDOM.render(<SingleRecipientPageContent recipient={recipient} />, entryPoint);
     });
 
     describe('renders and header', () => {
