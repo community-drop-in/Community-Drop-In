@@ -1,7 +1,7 @@
 import React from 'react';
 
-const InfoOrders = ({recipient}) => (
-    foo
+const InfoOrderList = ({recipient}) => (
+    
 );
 
-export default InfoOrders;
+export default InfoOrderList;

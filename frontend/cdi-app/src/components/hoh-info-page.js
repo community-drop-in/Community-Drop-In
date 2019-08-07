@@ -5,16 +5,16 @@ import InfoPhone from './hoh-info-page-components/hoh-info-phone';
 import InfoAddress from './hoh-info-page-components/hoh-info-address';
 import InfoSize from './hoh-info-page-components/hoh-info-size';
 import InfoDelivery from './hoh-info-page-components/hoh-info-delivery';
-import InfoOrders from './hoh-info-page-components/hoh-info-recent-orders';
+import InfoOrderList from './hoh-info-page-components/hoh-info-recent-orders';
 
-const SingleRecipientPageContent = ({ recipient }) => (
+const SingleRecipientPageContent = ({recipient}) => (
     <div className='container'>
         <InfoNameHeader recipient={recipient} />
-        <InfoDOB recipient={recipient} />
-        <InfoPhone recipient={recipient} />
-        <InfoAddress recipient={recipient} />
-        <InfoSize recipient={recipient} />
-        <InfoDelivery recipient={recipient} />
+        <InfoDOB dateOfBirth={recipient.dateOfBirth} />
+        <InfoPhone phoneNumber={recipient.phoneNumber} />
+        <InfoAddress address={recipient.address} />
+        <InfoSize houseSize={recipient.houseSize} />
+        <InfoDelivery deliveryStatus={recipient.deliveryStatus} />
     </div>
     );
 

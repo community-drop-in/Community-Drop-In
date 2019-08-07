@@ -1,10 +1,10 @@
 import React from 'react';
 
-const InfoAddress = ({recipient}) => (
+const InfoAddress = ({address}) => (
     <section className='info-section address'>
         <div className='info-section__content-div'>
             <h3 className='info-section__content-div__title address-title'>Address:</h3>
-            <h4 className='info-section__content-div__content address-value'>{recipient.address}</h4>
+            <h4 className='info-section__content-div__content address-value'>{address}</h4>
         </div>
         <button className='info-section__button address-modify-button'>Change Address</button>
     </section>
