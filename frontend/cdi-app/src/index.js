@@ -5,7 +5,7 @@ import App from './App';
 import Api from './Api/Api'
 import * as serviceWorker from './serviceWorker';
 // import Counter from './components/counter.jsx'
-import Finder from './components/finder.js'
+import Finder from './components/Finder.js'
 
 // const testRecipient = {
 //     id: 1,

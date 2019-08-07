@@ -48,7 +48,7 @@ public class HeadOfHouseholdControllerTest {
 	@Test
 	public void hohControllerShouldReturnAllHohs() {
 		when(hohRepo.findAll()).thenReturn(Collections.singletonList(hoh));
-		Iterable<HeadOfHousehold> hohs = underTest.retrieveAllRecipients();
+		Iterable<HeadOfHousehold> hohs = underTest.retrieveAllRecipientsSortByLastName();
 		assertThat(hohs, contains(hoh));
 
 	}

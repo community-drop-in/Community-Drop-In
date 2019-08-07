@@ -29,29 +29,35 @@ public class HeadOfHouseholdController {
 	HeadOfHouseholdRepository hohRepo;
 
 	@GetMapping("/recipients")
-	public Iterable<HeadOfHousehold> retrieveAllRecipients() {
+	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByLastName() {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
 	}
+
 	@GetMapping("/recipients/sortby-first-name")
 	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByFirstName() {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "firstName"));
 	}
+
 	@GetMapping("/recipients/sortby-address")
 	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByAddress() {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "address"));
 	}
+
 	@GetMapping("/recipients/sortby-phone-number")
 	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByPhoneNumber() {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "phoneNumber"));
 	}
+
 	@GetMapping("/recipients/sortby-delivery-status")
 	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByDeliveryStatus() {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "deliveryStatus"));
 	}
+
 	@GetMapping("/recipients/sortby-house-size")
 	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByHouseSize() {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "houseSize"));
 	}
+
 	@GetMapping("/recipients/sortby-date-of-birth")
 	public Iterable<HeadOfHousehold> retrieveAllRecipientsSortByDateOfBirth() {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "dateOfBirth"));
@@ -68,7 +74,6 @@ public class HeadOfHouseholdController {
 		HeadOfHousehold newHoh = makeHohFromDataJson(hohDataString);
 		return hohRepo.save(newHoh);
 	}
-
 
 	@PatchMapping("/recipients/{id}/update-address")
 	public HeadOfHousehold patchSingleRecipientAddress(@PathVariable() Long id, @RequestBody String newAddress)
@@ -104,14 +109,15 @@ public class HeadOfHouseholdController {
 		retrievedHoh.setHouseSize(houseSize);
 		return hohRepo.save(retrievedHoh);
 	}
+
 	@PatchMapping("/recipients/{id}/update-delivery-status")
 	public HeadOfHousehold patchSingleRecipientDeliveryStatus(@PathVariable Long id) throws Exception {
 		HeadOfHousehold retrievedHoh = idToHohJson(id);
-		retrievedHoh.changeDeliveryStatus(); 
+		retrievedHoh.changeDeliveryStatus();
 		return hohRepo.save(retrievedHoh);
-		
+
 	}
-	
+
 	private HeadOfHousehold makeHohFromDataJson(String hohDataString) throws JSONException {
 		Object hohDataObject = JSONParser.parseJSON(hohDataString);
 		JSONObject hohDataJson = (JSONObject) hohDataObject;
@@ -127,7 +133,7 @@ public class HeadOfHouseholdController {
 		newHoh = new HeadOfHousehold(firstName, lastName, address, phoneNumber, deliveryStatus, houseSize, dateOfBirth);
 		return newHoh;
 	}
-	
+
 	private HeadOfHousehold idToHohJson(Long id) throws Exception {
 		Optional<HeadOfHousehold> retrievedOptional = hohRepo.findById(id);
 		HeadOfHousehold retrievedHoh;
