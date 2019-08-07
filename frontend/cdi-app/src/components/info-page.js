@@ -26,14 +26,20 @@ const InfoPage = ({ recipient }) => (
             </div>
             <button className='info-section__button address-modify-button'>Change Address</button>
         </section>
-        <section className='info-section'>
+        <section className='info-section size'>
             <div className='info-section__content-div'>
                 <h3 className='info-section__content-div__title size-title'>Household Size:</h3>
                 <h4 className='info-section__content-div__content size-value'>{recipient.houseSize}</h4>
             </div>
             <button className='info-section__modify-button size-modify-button'>Change Household Size</button>
         </section>
-        
+        <section className='info-section delivery-status'>
+            <div className='info-section__content-div'>
+                <h3 className='info-section__content-div__title delivery-status-title'>Delivery:</h3>
+                <h4 className='info-section__content-div__content'>Yes</h4>
+            </div>
+            <button className='info-section__modify-button'>Remove Delivery</button>
+        </section>
     </div>
     );
 
