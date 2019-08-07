@@ -180,19 +180,33 @@ a:hover {
 .kitchen-main-header {
     color: var(--color-background);
     background: var(--color-foreground);
-    height: 10rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 30px;
+    margin: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 30em;
+    height: 10rem;
+    
 }
 
 .kitchen-sub-header {
-    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 40px;
+    border: 2px solid;
+    margin: 5rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 20em;
+}
+
+.kitchen-buttons {
+   justify-content: space-between;
+   display: flex;
 }
 
 /* search sortby page */
