@@ -31,6 +31,9 @@ test('should render table', () => {
     expect(entryPoint.querySelector('.order-table__head').tagName).toMatch('THEAD');
     expect(entryPoint.querySelector('.order-table__body').tagName).toMatch('TBODY');
     expect(entryPoint.querySelector('.order-row').tagName).toMatch('TR');
+    expect(entryPoint.querySelector('.order-table-title').textContent).toMatch('ORDERS');
+    expect(entryPoint.querySelector('.size-td-label').textContent).toMatch('PEOPLE');
+    expect(entryPoint.querySelector('.date-td-label').textContent).toMatch('DATE');
 });
 
 test('table should contain Joe Schmmo and John Doe', () => {
