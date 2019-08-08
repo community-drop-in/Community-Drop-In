@@ -15,6 +15,7 @@ const SingleRecipientPageContent = ({recipient}) => (
         <InfoAddress address={recipient.address} />
         <InfoSize houseSize={recipient.houseSize} />
         <InfoDelivery deliveryStatus={recipient.deliveryStatus} />
+        <InfoOrderList orders={recipient.orders} />
     </div>
     );
 
