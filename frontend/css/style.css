@@ -205,10 +205,32 @@ a:hover {
 }
 
 .kitchen-buttons {
-   justify-content: space-between;
-   display: flex;
+    display: flex;
+    justify-content: space-around;
 }
 
+.kitchen-button-undo {
+    background-color: red;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+}
+
+.kitchen-button-finished {
+    background-color: green;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+   
+}
 /* search sortby page */
 
 .search-bar{
