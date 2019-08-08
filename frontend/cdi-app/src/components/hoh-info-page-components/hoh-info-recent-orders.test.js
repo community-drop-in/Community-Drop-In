@@ -19,6 +19,8 @@ const orders = [
     }
 ];
 
+const orders2 = [];
+
 let entryPoint;
 
 beforeEach(() => {
@@ -39,4 +41,10 @@ test('should render table', () => {
 test('table should contain Joe Schmmo and John Doe', () => {
     expect(entryPoint.querySelectorAll('.date-td')[0].textContent).toMatch('2019-08-09');
     expect(entryPoint.querySelectorAll('.date-td')[1].textContent).toMatch('2019-08-02');
+});
+
+test('empty orders list should render table with headers and no content', () => {
+    const entryPoint2 = document.createElement('div');
+    ReactDOM.render(<InfoOrderList orders={orders2} />, entryPoint2);
+    expect(entryPoint2.querySelectorAll('.order-row')).toHaveLength(0);
 });
