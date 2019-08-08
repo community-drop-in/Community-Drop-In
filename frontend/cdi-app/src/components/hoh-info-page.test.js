@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SingleRecipientPageContent from './info-page';
+import SingleRecipientPageContent from './hoh-info-page';
 
 const recipient = {
     firstName: "John",
@@ -9,7 +9,23 @@ const recipient = {
     phoneNumber: "6145551212",
     deliveryStatus: false,
     houseSize: 4,
-    dateOfBirth: "1995-10-08"
+    dateOfBirth: "1995-10-08",
+    foodOrders: [
+        {
+            id: 5,
+            size: 3,
+            date: "2019-08-02",
+            hohFirstName: "Joe",
+            hohLastName: "Schmmo"
+        },
+        {
+            id: 6,
+            size: 4,
+            date: "2019-08-09",
+            hohFirstName: "Joe",
+            hohLastName: "Schmmo"
+        }
+    ],
 };
 
 describe('Info Page Component', () => {
