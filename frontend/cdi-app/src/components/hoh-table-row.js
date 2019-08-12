@@ -13,9 +13,9 @@ const HohTableRow = ({ recipient }) => (
         <th className='recipient-last-name'>{recipient.lastName}</th>
         <th className='recipient-dob'>{recipient.dateOfBirth}</th>
         <th className='recipient-phone-number'>
-        ({recipient.phoneNumber.slice(0,3)})
-           {recipient.phoneNumber.slice(3,6)}-
-           {recipient.phoneNumber.slice(6,10)}
+        {'(' + recipient.phoneNumber.toString().slice(0,3) + ') ' +
+            recipient.phoneNumber.toString().slice(3,6) + '-' +
+            recipient.phoneNumber.toString().slice(6,10)}
         </th>
         <th className='recipient-address'>{recipient.address}</th>
         <th className='recipient-household'>{recipient.houseSize}</th>

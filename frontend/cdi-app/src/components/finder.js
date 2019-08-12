@@ -1,28 +1,27 @@
 import React, {Component} from 'react'
 import RecipientRow from './RecipientRow'
+import SingleRecipientPageContent from'./hoh-info-page'
 // import FinderTable from './FinderTable'
 import Api from '../Api/Api'
 
 class Finder extends Component{
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
-            recipients: [],
-            sortQuery: ''
-        }
+            sortQuery: '',
+            sortedRecipients: []
+        };
     }
 
-    getRecipients(){
-        Api().getRequest(Api().getRootURL()+`recipients/${this.state.sortQuery}`, (recipients) => {
-            this.setState({recipients})
-        })
+    getSortedRecipients = () => {
+        
     }
 
     componentDidMount(){
         console.log('App - Mounted')
         // console.log(this.state.recipients)
-        this.getRecipients()
+         this.getSortedRecipients()
     }
 
     render(){
@@ -30,7 +29,7 @@ class Finder extends Component{
         // const { id, lastName, phoneNumber, address, deliveryStatus, houseSize, firstName, dateOfBirth } = this.state.recipient;
         
         // console.log(this.state.recipients)
-        this.getRecipients()
+        // this.getRecipients()
         // console.log(this.state.recipients)
         return (
             <div className='finder'>
@@ -43,7 +42,7 @@ class Finder extends Component{
                                         e.preventDefault()
                                         this.setState({sortQuery: ''})
 
-                                        // this.getRecipients()
+                                        //  this.getRecipients()
                                     }}>
                                         Last Name</th>
                                 <th className='head__phone' onClick={
@@ -51,7 +50,7 @@ class Finder extends Component{
                                         e.preventDefault()
                                         this.setState({sortQuery: 'sortby-phone-number'})
                                         
-                                        // this.getRecipients()
+                                        //  this.getRecipients()
                                     }}>
                                         Phone #</th>
                                 <th className='head__address' onClick={
@@ -59,7 +58,7 @@ class Finder extends Component{
                                         e.preventDefault()
                                         this.setState({sortQuery: 'sortby-address'})
 
-                                        // this.getRecipients()
+                                        //  this.getRecipients()
                                     }}>
                                         Address</th>
                                 <th className='head__delivery-status' onClick={
@@ -67,7 +66,7 @@ class Finder extends Component{
                                         e.preventDefault()
                                         this.setState({sortQuery: 'sortby-delivery-status'})
                                         
-                                        // this.getRecipients()
+                                        //  this.getRecipients()
                                     }}>
                                         Delivery</th>
                                 <th className='head__household-size' onClick={
@@ -75,7 +74,7 @@ class Finder extends Component{
                                         e.preventDefault()
                                         this.setState({sortQuery: 'sortby-house-size'})
                                         
-                                        // this.getRecipients()
+                                        //  this.getRecipients()
                                     }}>
                                         Household</th>
                                 <th className='head__firstname' onClick={
@@ -83,7 +82,7 @@ class Finder extends Component{
                                         e.preventDefault()
                                         this.setState({sortQuery: 'sortby-first-name'})
                                         
-                                        // this.getRecipients()
+                                        //  this.getRecipients()
                                     }}>
                                         First Name</th>
                                 <th className='head__dob' onClick={
@@ -91,12 +90,13 @@ class Finder extends Component{
                                         e.preventDefault()
                                         this.setState({sortQuery: 'sortby-date-of-birth'})
                                         
-                                        // this.getRecipients()
+                                        //  this.getRecipients()
                                     }}>
                                         Date of Birth</th>         
                                 <th className='head__eligible'>Eligable</th>
                             </tr>
-                            {this.state.recipients.map((recipient)=>{
+                            {/* {console.log(this.props.recipients)} */}
+                            {this.props.recipients.map((recipient)=>{
                                 return <RecipientRow recipient={recipient} />
                             })}
                         </tbody>

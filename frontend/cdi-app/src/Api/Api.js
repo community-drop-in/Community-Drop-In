@@ -1,31 +1,27 @@
-export default function() {
-	return new Api();
-}
+import React, {useEffect, useState} from 'react'
+import AllHohTable from '../components/all-hoh-table'
 
-class Api {
-	constructor(rootURL) {
-		if (rootURL === undefined) {
-			rootURL = "http://localhost:8080/api/";
-		}
-		this.rootURL = rootURL;
-	}
 
-	getRootURL() {
-		return this.rootURL;
-	}
-
-	getRequest(location, callback) {
-		fetch(location)
+const Api = () => {
+	const [recipients, setRecipients] = useState([])
+	useEffect(() =>{
+		fetch(getRootURL() + 'recipients')
 			.then(response => response.json())
-			.then(callback)
-			.catch(err => console.log(err));
-	}
-
-	getJson(location, callback){
-		return fetch(location)
-			.then((response) => {
-				return response.json();
-			})
-			.then(callback)
+			.then(recipients => setRecipients(recipients))
+	}, [])
+	{console.log(recipients)}
+	if(recipients !==undefined){
+		return(
+			<AllHohTable recipients={recipients}/>
+			// <h1>{getRecipients()}</h1>
+		)
 	}
 }
+
+
+function getRootURL() {
+	return 'http://localhost:8080/api/';
+}
+
+
+export default Api
