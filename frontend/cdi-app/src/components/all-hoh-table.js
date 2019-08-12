@@ -1,5 +1,5 @@
-import React from 'react'
-import HohTableRow from './hoh-table-row'
+import React from 'react';
+import HohTableRow from './all-hoh-table-components/hoh-table-row';
 
 
 const AllHohTable = ({ recipients }) => (
