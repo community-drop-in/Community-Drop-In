@@ -15,14 +15,13 @@ function AppRouter() {
 
     function handleRecipientClick(recipient) {
         setRecipient(recipient)
-        console.log(recipient)
     }
 
     return (
         <Router>
             <Switch>
-                <Route path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} isAuthed={true} />} />
-                <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} isAuthed={true} />} />
+                <Route exact path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} />} />
+                <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} />} />
             </Switch>
         </Router>
     )
@@ -42,42 +41,44 @@ function getRootURL() {
 
 function HohTable({ recipients, handleRecipientClick }) {
     return (
-        <table className='results-table'>
-            <tbody className='results-table__body'>
-                <tr className='results-table__head'>
-                    <th className='head__firstname'>First Name</th>
-                    <th className='head__lastname'>Last Name</th>
-                    <th className='head__dob'>DOB</th>
-                    <th className='head__phone'>Phone #</th>
-                    <th className='head__address'>Address</th>
-                    <th className='head__household'>Household</th>
-                    <th className='head__delivery'>Delivery</th>
-                    <th className='head__eligible'>Eligible</th>
-                </tr>
-                {recipients.map(recipient => <HohTableRow recipient={recipient} handleRecipientClick={handleRecipientClick} />)}
-            </tbody>
-        </table>
+        <article className='results-article'>
+            <ul className='results-table__head'>
+                <li className='head__firstname'>First Name</li>
+                <li className='head__lastname'>Last Name</li>
+                <li className='head__dob'>DOB</li>
+                <li className='head__phone'>Phone #</li>
+                <li className='head__address'>Address</li>
+                <li className='head__household'>Household</li>
+                <li className='head__delivery'>Delivery</li>
+                <li className='head__eligible'>Eligible</li>
+            </ul>
+            {recipients.map(recipient => <HohTableRow recipient={recipient} handleRecipientClick={handleRecipientClick} />)}
+
+        </article>
     )
 }
 
 function HohTableRow({ recipient, handleRecipientClick }) {
     return (
-        <tr className='single-recipient-table__row'
-        onClick={() => {handleRecipientClick(recipient)}} 
+        <Link to='/single-hoh'> <ul className='single-recipient-table__row'
+            onClick={() => {
+                handleRecipientClick(recipient)
+            }}
         >
-            <th className='recipient-first-name'>{recipient.firstName}</th>
-            <th className='recipient-last-name'>{recipient.lastName}</th>
-            <th className='recipient-dob'>{recipient.dateOfBirth}</th>
-            <th className='recipient-phone-number'>
+            <li className='recipient-first-name'>{recipient.firstName}</li>
+            <li className='recipient-last-name'>{recipient.lastName}</li>
+            <li className='recipient-dob'>{recipient.dateOfBirth}</li>
+            <li className='recipient-phone-number'>
                 {'(' + recipient.phoneNumber.toString().slice(0, 3) + ') ' +
                     recipient.phoneNumber.toString().slice(3, 6) + '-' +
                     recipient.phoneNumber.toString().slice(6, 10)}
-            </th>
-            <th className='recipient-address'>{recipient.address}</th>
-            <th className='recipient-household'>{recipient.houseSize}</th>
-            <th className='recipient-delivery'>{DeliveryStatusText(recipient.deliveryStatus)}</th>
-            <th className='recipient-eligible'></th>
-        </tr>
+            </li>
+            <li className='recipient-address'>{recipient.address}</li>
+            <li className='recipient-household'>{recipient.houseSize}</li>
+            <li className='recipient-delivery'>{DeliveryStatusText(recipient.deliveryStatus)}</li>
+            <li className='recipient-eligible'></li>
+        </ul>
+        </Link>
     )
 }
 
@@ -124,30 +125,26 @@ function InfoNameHeader({ recipient }) {
 
 function InfoOrder({ order }) {
     return (
-        <tr className='order-row'>
-            <td className='size-td'>{order.size}</td>
-            <td className='date-td'>{order.date}</td>
-        </tr>
+        <ul className='order-row'>
+            <li className='size-li'>{order.size}</li>
+            <li className='date-li'>{order.date}</li>
+        </ul>
     );
 }
 
 function InfoOrderList({ orders }) {
     return (
-        <table className='order-table'>
-            <thead className='order-table__head'>
-                <tr className='order-table__title-row'>
-                    <th className='order-table-title' colSpan='2'>ORDERS</th>
-                </tr>
-            </thead>
-            <tbody className='order-table__body'>
-                <tr>
-                    <td className='size-td-label'>PEOPLE</td>
-                    <td className='date-td-label'>DATE</td>
-                </tr>
-                console.log(orders);
+        <article className='order-article'>
+            <ul className='order-table__title-row'>
+                <li className='order-article-title' colSpan='2'>ORDERS</li>
+            </ul>
+            <ul>
+                <li className='size-li-label'>PEOPLE</li>
+                <li className='date-li-label'>DATE</li>
+            </ul>
+            console.log(orders);
                 {orders.map(order => <InfoOrder order={order} />)}
-            </tbody>
-        </table>
+        </article>
     );
 }
 
@@ -157,13 +154,21 @@ function InfoPhone({ phoneNumber }) {
             <div className='info-section__content-div'>
                 <h3 className='info-section__content-div__title phone-title'>Phone:</h3>
                 <h4 className='info-section__content-div__title phone-value'>
-                    ({phoneNumber.slice(0, 3)})
-                {phoneNumber.slice(3, 6)}-
-                {phoneNumber.slice(6, 10)}</h4>
+                    {InfoPhoneParse(phoneNumber)}</h4>
             </div>
             <button className='info-section__modify-button phone-modify-button'>Change Phone #</button>
         </section>
     );
+}
+
+function InfoPhoneParse({ phoneNumber }) {
+    if (phoneNumber !== undefined) {
+        return (
+            '(' + phoneNumber.toString().slice(0, 3) + ') ' +
+            phoneNumber.toString().slice(3, 6) + '-' +
+            phoneNumber.toString().slice(6, 10)
+        )
+    }
 }
 
 function InfoSize({ houseSize }) {
@@ -179,17 +184,19 @@ function InfoSize({ houseSize }) {
 }
 
 function SingleRecipientPageContent({ recipient }) {
-    return (
-        <div className='container'>
-            <InfoNameHeader recipient={recipient} />
-            <InfoDOB dateOfBirth={recipient.dateOfBirth} />
-            <InfoPhone phoneNumber={recipient.phoneNumber} />
-            <InfoAddress address={recipient.address} />
-            <InfoSize houseSize={recipient.houseSize} />
-            <InfoDelivery deliveryStatus={recipient.deliveryStatus} />
-            <InfoOrderList orders={recipient.foodOrders} />
-        </div>
-    );
+    if (recipient !== undefined) {
+        return (
+            <div className='container'>
+                <InfoNameHeader recipient={recipient} />
+                <InfoDOB dateOfBirth={recipient.dateOfBirth} />
+                {/* <InfoPhone phoneNumber={recipient.phoneNumber} /> */}
+                <InfoAddress address={recipient.address} />
+                <InfoSize houseSize={recipient.houseSize} />
+                <InfoDelivery deliveryStatus={recipient.deliveryStatus} />
+                {/* <InfoOrderList orders={recipient.foodOrders} /> */}
+            </div>
+        );
+    }
 }
 
 export default AppRouter
