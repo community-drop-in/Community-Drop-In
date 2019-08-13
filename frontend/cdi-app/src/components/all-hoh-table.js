@@ -1,6 +1,12 @@
 import React from 'react'
 import HohTableRow from './all-hoh-table-components/hoh-table-row'
 
+function recipientsToMap({recipients}) {
+    if(recipients) {
+        return recipients;
+    }
+    return [];
+}
 
 const AllHohTable = ({ recipients }) => (
     <table className='results-table'>
@@ -15,7 +21,7 @@ const AllHohTable = ({ recipients }) => (
                 <th className='head__delivery'>Delivery</th>
                 <th className='head__eligible'>Eligible</th>
             </tr>
-            {recipients.map(recipient => <HohTableRow recipient={recipient}/>)}
+            {recipientsToMap({recipient}).map(recipient => <HohTableRow recipient={recipient}/>)}
         </tbody>
     </table>
 

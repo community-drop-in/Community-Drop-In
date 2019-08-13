@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-const AppRouter = () => {
+function AppRouter(){
 
 	const [recipients, setRecipients] = useState([]);
 	const[showAllRecipients, setShowAllRecipients] = useState(true);
@@ -14,7 +14,11 @@ const AppRouter = () => {
 	
 	if(recipients !==undefined && showAllRecipients){
 		return (
-			<HohTable recipients={recipients}/>
+            <Router>
+                <Switch>
+                    <Route path='/' render={() => <HohTable recipients={recipients} isAuthed={true}/>}/>
+                </Switch>
+            </Router>
 		)
 	}
 }
@@ -44,9 +48,8 @@ function HohTable({recipients}) {
 				<th className='head__delivery'>Delivery</th>
 				<th className='head__eligible'>Eligible</th>
 			</tr>
-			{recipients.map(recipient => (
-				<HohTableRow recipient={recipient} />
-			))}
+            {console.log(recipients)}
+			{recipientsToMap({recipients}).map(recipient => <HohTableRow recipient={recipient}/>)}
 		</tbody>
 	</table>
 	)
@@ -169,6 +172,13 @@ function InfoSize({houseSize}) {
     </section>
     );
 } 
+
+function recipientsToMap({recipients}) {
+    if(recipients) {
+        return recipients;
+    }
+    return [];
+}
 
 function SingleRecipientPageContent({recipient}) {
     return (
