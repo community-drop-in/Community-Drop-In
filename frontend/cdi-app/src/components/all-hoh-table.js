@@ -1,5 +1,5 @@
 import React from 'react'
-import HohTableRow from './hoh-table-row'
+import HohTableRow from './all-hoh-table-components/hoh-table-row'
 
 
 const AllHohTable = ({ recipients }) => (
@@ -16,8 +16,6 @@ const AllHohTable = ({ recipients }) => (
                 <th className='head__eligible'>Eligible</th>
             </tr>
             {recipients.map(recipient => <HohTableRow recipient={recipient}/>)}
-            
-
         </tbody>
     </table>
 

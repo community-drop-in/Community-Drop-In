@@ -7,8 +7,11 @@ function DeliveryStatusText (deliveryStatus) {
     return 'No';
  };
 
-const HohTableRow = ({ recipient }) => (
-    <tr className='single-recipient-table__row'>
+export default function HohTableRow({recipient}) {
+    return (
+    <tr className='single-recipient-table__row' 
+        onClick={() => {alert('you clicked on '+recipient.firstName)}}
+        >
         <th className='recipient-first-name'>{recipient.firstName}</th>
         <th className='recipient-last-name'>{recipient.lastName}</th>
         <th className='recipient-dob'>{recipient.dateOfBirth}</th>
@@ -21,14 +24,6 @@ const HohTableRow = ({ recipient }) => (
         <th className='recipient-household'>{recipient.houseSize}</th>
         <th className='recipient-delivery'>{DeliveryStatusText(recipient.deliveryStatus)}</th>
         <th className='recipient-eligible'></th>
-
     </tr>
-
-)
-
-
-
-
-
-
-export default HohTableRow;
+    )
+}
