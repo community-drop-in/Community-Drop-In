@@ -49,7 +49,7 @@ function HohTable({recipients}) {
 				<th className='head__eligible'>Eligible</th>
 			</tr>
             {console.log(recipients)}
-			{recipientsToMap({recipients}).map(recipient => <HohTableRow recipient={recipient}/>)}
+			{recipients.map(recipient => <HohTableRow recipient={recipient}/>)}
 		</tbody>
 	</table>
 	)
@@ -172,13 +172,6 @@ function InfoSize({houseSize}) {
     </section>
     );
 } 
-
-function recipientsToMap({recipients}) {
-    if(recipients) {
-        return recipients;
-    }
-    return [];
-}
 
 function SingleRecipientPageContent({recipient}) {
     return (
