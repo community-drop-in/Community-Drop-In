@@ -6,8 +6,9 @@ import InfoAddress from './hoh-info-page-components/hoh-info-address';
 import InfoSize from './hoh-info-page-components/hoh-info-size';
 import InfoDelivery from './hoh-info-page-components/hoh-info-delivery';
 import InfoOrderList from './hoh-info-page-components/hoh-info-recent-orders';
+import OrderButton from './hoh-info-page-components/hoh-submit-button';
 
-export default function SingleRecipientPageContent({ recipient }) {
+export default function SingleRecipientPageContent({ recipient, handleOrderButtonClick }) {
     if (recipient !== undefined) {
         return (
             <div className='container'>
@@ -17,6 +18,7 @@ export default function SingleRecipientPageContent({ recipient }) {
                 <InfoAddress address={recipient.address} />
                 <InfoSize houseSize={recipient.houseSize} />
                 <InfoDelivery deliveryStatus={recipient.deliveryStatus} />
+                <OrderButton handleOrderButtonClick={handleOrderButtonClick} recipient={recipient} />
                 <InfoOrderList orders={recipient.foodOrders} />
             </div>
         );
