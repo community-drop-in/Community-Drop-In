@@ -1,6 +1,6 @@
 import React from 'react';
 
-function InfoDOB({dateOfBirth}) {
+function InfoDOB({ dateOfBirth }) {
     return (
         <section className='info-section dob'>
             <div className='info-section__content-div'>
@@ -9,6 +9,6 @@ function InfoDOB({dateOfBirth}) {
             </div>
         </section>
     );
-} 
+}
 
 export default InfoDOB;

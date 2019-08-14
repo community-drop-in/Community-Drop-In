@@ -1,12 +1,12 @@
 import React from 'react';
 
-function InfoOrder({order}) {
+function InfoOrder({ order }) {
     return (
-        <tr className='order-row'>
-            <td className='size-td'>{order.size}</td>
-            <td className='date-td'>{order.date}</td>
-        </tr>
-    );    
-} 
+        <ul className='order-row'>
+            <li className='size-li'>{order.size}</li>
+            <li className='date-li'>{order.date}</li>
+        </ul>
+    );
+}
 
 export default InfoOrder;
