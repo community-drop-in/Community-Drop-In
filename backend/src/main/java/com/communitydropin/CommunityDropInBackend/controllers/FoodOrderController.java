@@ -3,9 +3,11 @@ package com.communitydropin.CommunityDropInBackend.controllers;
 import java.time.LocalDate;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.skyscreamer.jsonassert.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +20,8 @@ import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
 import com.communitydropin.CommunityDropInBackend.repositories.FoodOrderRepository;
 import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
 
-import org.json.JSONObject;
-
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class FoodOrderController {
 
@@ -41,10 +42,13 @@ public class FoodOrderController {
 	}
 	
 	@PostMapping("/food-orders")
-	public FoodOrder postSingleFoodOrder(@RequestBody String orderDataString) throws JSONException {
+	public Iterable<HeadOfHousehold> postSingleFoodOrder(@RequestBody String orderDataString) throws JSONException {
 		FoodOrder foodOrder = makeFoodOrderFromDataJson(orderDataString);
 		
-		return foodOrderRepo.save(foodOrder);
+		foodOrderRepo.save(foodOrder);
+		
+		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
+		
 	}
 
 	private FoodOrder makeFoodOrderFromDataJson(String orderDataString) throws JSONException {

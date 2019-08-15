@@ -1,29 +1,30 @@
-import React from 'react';
-import HohTableRow from './all-hoh-table-components/hoh-table-row';
+
+import React from 'react'
+import HohTableRow from './all-hoh-table-components/hoh-table-row'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+export default function HohTable({ recipients, handleRecipientClick }) {
+    return (
+        <>
+            <article className='results-article'>
+                <ul className='results-table__head'>
+                    <li className='head__firstname'>First Name</li>
+                    <li className='head__lastname'>Last Name</li>
+                    <li className='head__dob'>DOB</li>
+                    <li className='head__phone'>Phone #</li>
+                    <li className='head__address'>Address</li>
+                    <li className='head__household'>Household</li>
+                    <li className='head__delivery'>Delivery</li>
+                    <li className='head__eligible'>Eligible</li>
+                </ul>
+                {recipients.map(recipient => <HohTableRow recipient={recipient} handleRecipientClick={handleRecipientClick} />)}
+
+            </article>
+            <Link to='/hoh-form'>New Recipient</Link>
+        </>
+    )
+}
 
 
-const AllHohTable = ({ recipients }) => (
-    <table className='results-table'>
-        <tbody className='results-table__body'>
-            <tr className='results-table__head'>
-                <th className='head__firstname'>First Name</th>
-                <th className='head__lastname'>Last Name</th>
-                <th className='head__dob'>DOB</th>
-                <th className='head__phone'>Phone #</th>
-                <th className='head__address'>Address</th>
-                <th className='head__household'>Household</th>
-                <th className='head__delivery'>Delivery</th>
-                <th className='head__eligible'>Eligible</th>
-            </tr>
-            {recipients.map(recipient => <HohTableRow recipient={recipient}/>)}
-            
-
-        </tbody>
-    </table>
-
-);
 
 
-
-
-export default AllHohTable

@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
-import Finder from './components/Finder'
+import AppRouter from './Api/AppRouter';
 import './App.css';
+import MainHeader from './components/main-header';
 
 function App() {
   return (
     <>
-    <Finder/>
+    <AppRouter />
     </>
   );
 }

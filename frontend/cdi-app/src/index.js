@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Api from './Api/Api'
 import * as serviceWorker from './serviceWorker';
-// import Counter from './components/counter.jsx'
-import Finder from './components/Finder.js'
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
