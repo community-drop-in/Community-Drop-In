@@ -25,6 +25,7 @@ function AppRouter() {
     function handleRecipientClick(clickedRecipient) {
         setRecipient(clickedRecipient)
     }
+    function submitNewRecipient(model) { console.log(JSON.stringify(model)) }
 
     function handleOrderButtonClick(clickedRecipient){
         console.log('clicked recipient',clickedRecipient)
@@ -48,8 +49,19 @@ function AppRouter() {
         <Router>
             <Switch>
                 <Route exact path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} />} />
-                <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
                 <Route path='/queue' render={() => <Queue orders={orders} />} />
+                <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} />} />
+                <Route path='/hoh-form' render={() => <HohForm model={{
+                    lastName: "",
+                    phoneNumber: 0,
+                    address: "",
+                    deliveryStatus: null,
+                    houseSize: 0,
+                    dateOfBirth: "",
+                    foodOrders: [],
+                    firstName: ""
+                }}
+                    submitNewRecipient={submitNewRecipient} />} />
             </Switch>
         </Router>
     )
