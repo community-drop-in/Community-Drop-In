@@ -37,6 +37,14 @@ export default function HohForm({ model, submitNewRecipient }) {
             <input type="text" placeholder="HouseholdSize" onChange={(e) => {
                     model.houseSize = e.target.value
                 }} /><br />
+                Delivery
+            <select type="text" placeholder="Delivery" onChange={(e) => {
+                    model.deliveryStatus = e.target.value
+                }}>
+                <option value={false}>false</option>
+                <option value={true}>true</option>
+            </select>
+                <br />
                 <button className='give-food-button' type="submit" value="Submit">Submit</button><br />
 
             </form>

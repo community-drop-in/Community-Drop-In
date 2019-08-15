@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import SingleRecipientPageContent from '../components/hoh-info-page'
 import HohTable from '../components/all-hoh-table'
+import HohForm from '../components/hoh-form-page/hoh-form'
 import Queue from '../components/queue'
 
 function AppRouter() {
     const [recipients, setRecipients] = useState([])
     const [recipient, setRecipient] = useState({})
     const [orders, setOrders] = useState([])
-    const[newOrderInfo, setNewOrderInfo] = useState({})
+    const [newOrderInfo, setNewOrderInfo] = useState({})
 
     useEffect(() => {
         fetch(getRootURL() + 'recipients')
@@ -25,7 +26,19 @@ function AppRouter() {
     function handleRecipientClick(recipient) {
         setRecipient(recipient)
     }
-    function submitNewRecipient(model) { console.log(JSON.stringify(model)) }
+    function submitNewRecipient(model) { 
+        fetch(
+            getRootURL()+'recipients', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(model)
+            }
+        )
+        .then(response => response.json())
+        console.log(recipients)
+    }
 
     function handleOrderButtonClick(recipient){
         setNewOrderInfo({
@@ -44,6 +57,10 @@ function AppRouter() {
         .then(response => response.json())
     }
 
+    function handleNewRecipientButtonClick(){
+
+    }
+
     return (
         <Router>
             <Switch>
@@ -54,7 +71,7 @@ function AppRouter() {
                     lastName: "",
                     phoneNumber: 0,
                     address: "",
-                    deliveryStatus: null,
+                    deliveryStatus: false,
                     houseSize: 0,
                     dateOfBirth: "",
                     foodOrders: [],
