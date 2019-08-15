@@ -27,17 +27,6 @@ export default function AppRouter() {
             .then(orders => setOrders(orders))
     }, [])
 
-    setInterval(() => {
-        fetch(getRootURL() + 'food-orders')
-            .then(response => response.json())
-            .then(orders => setOrders(orders))
-    }, 3000)
-    setInterval(() => {
-        fetch(getRootURL() + 'recipients')
-            .then(response => response.json())
-            .then(recipients => setRecipients(recipients))
-    }, 3000)
-
     async function handleRecipientClick(clickedRecipient) {
         // setRecipientPhoneNumber(clickedRecipient.phoneNumber)
         await setRecipient(clickedRecipient)
@@ -97,10 +86,10 @@ export default function AppRouter() {
     }
 
     function selectRecipientByPhone(recipientPhoneNumber) {
-        recipients.filter( async (foundRecipient) => {
+        recipients.filter((foundRecipient) => {
             if(foundRecipient.phoneNumber == recipientPhoneNumber){
                 console.log(foundRecipient)
-                await setRecipient(foundRecipient)
+                setRecipient(foundRecipient)
                 console.log(recipient)
             }
         })
@@ -108,7 +97,6 @@ export default function AppRouter() {
 
     function renderSingleHoh(){
             console.log(recipient)
-        if(recipient.lastName !== undefined)
             return <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
     }
 
@@ -121,6 +109,7 @@ export default function AppRouter() {
                 {renderSingleHoh()}
                 
                 {/* <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={selectRecipient()} handleOrderButtonClick={handleOrderButtonClick} />} /> */}
+
                 <Route path='/hoh-form' render={() => <HohForm model={{
                     lastName: "",
                     phoneNumber: 0,
@@ -139,7 +128,7 @@ export default function AppRouter() {
                         handleYesButtonClick={handleYesButtonClick}
                         handleNoButtonClick={handleNoButtonClick}
                         />}/>
-                <Route path='/hoh-login' render={() => <HohLogin selectRecipientByPhone={selectRecipientByPhone}/>}/>
+                <Route path='/login' render={() => <HohLogin selectRecipientByPhone={selectRecipientByPhone}/>}/>
             </Switch>
         </Router>
     ) 

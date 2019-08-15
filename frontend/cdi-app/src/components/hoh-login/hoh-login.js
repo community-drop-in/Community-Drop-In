@@ -12,7 +12,7 @@ export default function HohLogin({selectRecipientByPhone}){
                     phoneNumber = e.target.value.replace("-", "").replace("-", "")
                 }} />
             <input type="text" placeholder="password"/>
-            <Link to="single-hoh" className='give-food-button'onClick={(e) => {
+            <Link to="/login-confirmation" className='give-food-button'onClick={(e) => {
                 selectRecipientByPhone(phoneNumber)
             }}>
                 Submit

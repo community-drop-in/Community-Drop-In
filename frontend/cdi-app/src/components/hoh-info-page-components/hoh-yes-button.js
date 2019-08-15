@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 export default function YesButton({handleYesButtonClick, recipient}) {
     return (
         <>
-        <Link to='/' onClick={
+        <Link to='/login' onClick={
             () => {
                 handleYesButtonClick(recipient)
             }
