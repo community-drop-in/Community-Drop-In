@@ -24,6 +24,7 @@ function AppRouter() {
             .then(response => response.json())
             .then(orders => setOrders(orders))
     }, [])
+    
 
     function handleRecipientClick(clickedRecipient) {
         // setRecipientPhoneNumber(clickedRecipient.phoneNumber)
