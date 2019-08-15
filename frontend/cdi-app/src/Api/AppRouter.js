@@ -60,17 +60,13 @@ function AppRouter() {
         .then(retrievedRecipients => setRecipients(retrievedRecipients))
     }
 
-    function handleNewRecipientButtonClick(){
-
-    }
-
     return (
         <Router>
             <MainHeader/>
             <Switch>
                 <Route exact path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} />} />
                 <Route path='/queue' render={() => <Queue orders={orders} />} />
-                <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} />} />
+                <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
                 <Route path='/hoh-form' render={() => <HohForm model={{
                     lastName: "",
                     phoneNumber: 0,
