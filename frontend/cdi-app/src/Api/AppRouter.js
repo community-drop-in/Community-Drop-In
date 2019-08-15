@@ -5,6 +5,7 @@ import HohTable from '../components/all-hoh-table'
 import HohForm from '../components/hoh-form-page/hoh-form'
 import MainHeader from '../components/main-header'
 import Queue from '../components/queue'
+import HohLogin from '../components/hoh-login/hoh-login'
 
 function AppRouter() {
     const [recipients, setRecipients] = useState([])
@@ -25,10 +26,12 @@ function AppRouter() {
             .then(orders => setOrders(orders))
     }, [])
 
-    function handleRecipientClick(clickedRecipient) {
+    async function handleRecipientClick(clickedRecipient) {
         // setRecipientPhoneNumber(clickedRecipient.phoneNumber)
-        setRecipient(clickedRecipient)
+        await setRecipient(clickedRecipient)
+        console.log(recipient)
     }
+    
     function submitNewRecipient(model) { 
         fetch(
             getRootURL()+'recipients', {
@@ -61,8 +64,19 @@ function AppRouter() {
         .then(recipientList => setRecipients(recipientList))
     }
 
-    function selectRecipient() {
-        return recipients.filter(recipient => {return recipient.phoneNumber == recipientPhoneNumber})
+    function selectRecipientByPhone(recipientPhoneNumber) {
+        recipients.filter((foundRecipient) => {
+            if(foundRecipient.phoneNumber == recipientPhoneNumber){
+                console.log(foundRecipient)
+                setRecipient(foundRecipient)
+                console.log(recipient)
+            }
+        })
+    }
+
+    function renderSingleHoh(){
+            console.log(recipient)
+            return <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
     }
 
     return (
@@ -71,7 +85,8 @@ function AppRouter() {
             <Switch>
                 <Route exact path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} />} />
                 <Route path='/queue' render={() => <Queue orders={orders} />} />
-                <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
+                {renderSingleHoh()}
+                
                 {/* <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={selectRecipient()} handleOrderButtonClick={handleOrderButtonClick} />} /> */}
                 <Route path='/hoh-form' render={() => <HohForm model={{
                     lastName: "",
@@ -84,6 +99,7 @@ function AppRouter() {
                     firstName: ""
                 }}
                     submitNewRecipient={submitNewRecipient} />} />
+                <Route path='/hoh-login' render={() => <HohLogin selectRecipientByPhone={selectRecipientByPhone}/>}/>
             </Switch>
         </Router>
     )
