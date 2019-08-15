@@ -1,9 +1,6 @@
 import React from 'react';
 
-
-
-
-export default function HohForm({ model, submitNewRecipient }) {
+export default function HohForm ({ model, submitNewRecipient }) {
 
     return (
         <div className='wrapper'>
@@ -24,7 +21,7 @@ export default function HohForm({ model, submitNewRecipient }) {
                 }} /><br />
                 Date Of Birth:
             <input type="date" placeholder="DateOfBirth" onChange={(e) => {
-                    
+
                     model.dateOfBirth = e.target.value.replace("/", "-")
                 }} /><br />
                 Address:
@@ -43,9 +40,9 @@ export default function HohForm({ model, submitNewRecipient }) {
             <select type="text" placeholder="Delivery" onChange={(e) => {
                     model.deliveryStatus = e.target.value
                 }}>
-                <option value={false}>false</option>
-                <option value={true}>true</option>
-            </select>
+                    <option value={false}>false</option>
+                    <option value={true}>true</option>
+                </select>
                 <br />
                 <button className='give-food-button' type="submit" value="Submit">Submit</button><br />
 
