@@ -13,31 +13,46 @@
 /* WRAPPER / CONTAINER STUFF */
 
 html {
+    
     /* VARIABLES */
+<<<<<<< HEAD
     --color-link-hover: maroon;
     --color-background: rgb(242, 223, 117);
     --color-foreground: rebeccapurple;
 
     /* FONTS, BACKGROUNDS, ETC. */
     background: var(--color-background);
+=======
+    --color-link-hover: #7FFFD4;
+    --color-background: #DEB887;
+    --color-foreground: #DEB887;
+    --gradient-top: rgba(39, 38, 38, 0.7);
+   --gradient-bottom: rgba(39, 38, 38, 0.7);
+>>>>>>> e5771f54e01e4e773738df53da505827d259948b
     color: var(--color-foreground);
     
     font-family: 'Roboto', sans-serif;
-    font-size: 20px 1.618;
+    font-size: 20px 1.618; 
+    /* FONTS, BACKGROUNDS, ETC. */
+    background-image:linear-gradient(var(--gradient-top), var(--gradient-bottom)), url(../src/images/pexels-photo-1435895.jpeg);
+    
+    background-size: cover;
+    
+    
 }
 
 body {
-
+    
 }
 
 .wrapper {
     max-width: 50rem;
     margin: auto;
-
+    
 }
 
 .container {
-
+    
 }
 
 .table {
@@ -68,12 +83,13 @@ a:hover {
 
 .main-header {
     align-items: center;
-    background: var(--color-foreground);
+    /* background: var(--color-foreground); */
     box-shadow: 0 0 10px black;
     color: var(--color-background);
     display:flex;
     justify-content: space-between;
     padding: 1rem;
+    opacity: 2;
 }
 
 .main-header__title {
@@ -90,7 +106,7 @@ a:hover {
 }
 
 .main-header__info__content {
-    padding-left: 0.25rem;
+    padding-left: .25rem;
 }
 
 .info-title {
@@ -98,6 +114,7 @@ a:hover {
 }
 
 .info-section {
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -159,12 +176,12 @@ a:hover {
 }
 
 .give-food-button {
-    background-color: green;
+    background-color: #DEB887;
     color: white;
     border-radius: 0.5rem;
     border-color: black;
-    box-shadow: 0 0 10px black;
-    font-size: 3rem;
+    box-shadow: 0 0 5px black;
+    font-size: 1rem;
     margin: 0.5rem;
     padding: 1rem;
 }
@@ -208,14 +225,16 @@ a:hover {
 }
 
 .new-recipient-button{
-    background-color: green;
+    background-color: #DEB887;
     color: white;
     border-radius: 0.5rem;
     border-color: black;
     box-shadow: 0 0 10px black;
     font-size: 2rem;
     margin-left: 1rem;
-    margin-top: 1rem;
+    margin-top: 20rem;
+    justify-content: space-between;
+    align-content: center;
     padding: .3rem;
     position: absolute;
 }
@@ -327,6 +346,7 @@ li{
     background-color: #9e924c;
     cursor: pointer;
 }
+
 
 .head__firstname{
 

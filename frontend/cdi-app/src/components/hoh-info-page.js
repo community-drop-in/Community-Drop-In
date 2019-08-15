@@ -19,7 +19,7 @@ export default function SingleRecipientPageContent({ recipient, handleOrderButto
                 <InfoSize houseSize={recipient.houseSize} />
                 <InfoDelivery deliveryStatus={recipient.deliveryStatus} />
                 <OrderButton handleOrderButtonClick={handleOrderButtonClick} recipient={recipient} />
-                <InfoOrderList orders={recipient.foodOrders} />
+                {/* <InfoOrderList orders={recipient.foodOrders} /> */}
             </div>
         );
     }
