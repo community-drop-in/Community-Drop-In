@@ -1,14 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 export default function YesButton({handleYesButtonClick, recipient}) {
     return (
         <>
-        <button onClick={
-            (e) => {
-            e.preventDefault()
-            handleYesButtonClick(recipient)}
+        <Link to='/' onClick={
+            () => {
+                handleYesButtonClick(recipient)
+            }
         }
-        className='yes-button'>Yes</button>
+        className='yes-button'>Yes</Link>
         </>
     )
 }

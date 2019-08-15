@@ -1,16 +1,3 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 * {
     box-sizing: border-box;
@@ -27,7 +14,7 @@ code {
 
 html {
     /* VARIABLES */
-    --color-link-hover: red;
+    --color-link-hover: maroon;
     --color-background: rgb(242, 223, 117);
     --color-foreground: rebeccapurple;
 
@@ -74,6 +61,10 @@ a:hover {
 }
 
 /* CLASSES */
+
+.correct-or-not {
+    align-self: center;
+}
 
 .main-header {
     align-items: center;
@@ -177,6 +168,40 @@ a:hover {
     margin: 0.5rem;
     padding: 1rem;
 }
+
+.yes-button {
+    background-color: green;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    width:12rem;
+}
+
+.yes-button:hover {
+    transform:scale(0.95);
+}
+
+.no-button {
+    background-color: red;
+    color: white;
+    border-radius: 0.5rem;
+    border-width: 2px;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    width: 12rem;
+}
+
+.no-button:hover {
+    transform:scale(0.95);
+}
+
 
 .give-food-button:hover {
     transform: scale(1.05);

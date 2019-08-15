@@ -1,14 +1,15 @@
 import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 export default function NoButton({handleNoButtonClick, recipient}) {
     return (
         <>
-        <button onClick={
-            (e) => {
-            e.preventDefault()
-            handleNoButtonClick(recipient)}
+        <Link to='' onClick={
+            () => {
+                handleNoButtonClick(recipient)
+            }
         }
-        className='no-button'>No</button>
+        className='no-button'>No</Link>
         </>
     )
 }

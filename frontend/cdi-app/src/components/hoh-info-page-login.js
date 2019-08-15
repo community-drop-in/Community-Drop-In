@@ -8,7 +8,7 @@ import InfoDelivery from './hoh-info-page-components/hoh-info-delivery';
 import YesButton from './hoh-info-page-components/hoh-yes-button'
 import NoButton from './hoh-info-page-components/hoh-no-button'
 
-export default function SingleRecipientPageContent({ recipient, handleYesButtonClick, handleNoButtonClick }) {
+export default function ConfirmationPageContent({ recipient, handleYesButtonClick, handleNoButtonClick }) {
     if (recipient !== undefined) {
         return (
             <div className='container'>
@@ -18,8 +18,11 @@ export default function SingleRecipientPageContent({ recipient, handleYesButtonC
                 <InfoAddress address={recipient.address} />
                 <InfoSize houseSize={recipient.houseSize} />
                 <InfoDelivery deliveryStatus={recipient.deliveryStatus} />
-                <YesButton handleYesButtonClick={handleYesButtonClick}/>
-                <NoButton handleNoButtonClick={handleNoButtonClick}/>
+                <h2 className='correct-or-not'>Is this information correct?</h2>
+                <div className='yes-no-button-div'>
+                    <YesButton handleYesButtonClick={handleYesButtonClick}/>
+                    <NoButton handleNoButtonClick={handleNoButtonClick}/>
+                </div>
             </div>
         );
     }

@@ -5,6 +5,7 @@ import HohTable from '../components/all-hoh-table'
 import HohForm from '../components/hoh-form-page/hoh-form'
 import MainHeader from '../components/main-header'
 import Queue from '../components/queue'
+import ConfirmationPageContent from '../components/hoh-info-page-login'
 
 function AppRouter() {
     const [recipients, setRecipients] = useState([])
@@ -29,6 +30,27 @@ function AppRouter() {
         // setRecipientPhoneNumber(clickedRecipient.phoneNumber)
         setRecipient(clickedRecipient)
     }
+
+    function handleYesButtonClick() {
+        alert('Thank you!')
+        fetch(
+            getRootURL()+'food-orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    phoneNumber:recipient.phoneNumber,
+                    date: new Date().toISOString().slice(0,10)
+                })
+            }
+        )
+    }
+
+    function handleNoButtonClick() {
+        alert('Please try again or see a staff member for help in registering.')
+    }
+
     function submitNewRecipient(model) { 
         fetch(
             getRootURL()+'recipients', {
@@ -72,7 +94,6 @@ function AppRouter() {
                 <Route exact path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} />} />
                 <Route path='/queue' render={() => <Queue orders={orders} />} />
                 <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
-                {/* <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={selectRecipient()} handleOrderButtonClick={handleOrderButtonClick} />} /> */}
                 <Route path='/hoh-form' render={() => <HohForm model={{
                     lastName: "",
                     phoneNumber: 0,
@@ -84,6 +105,13 @@ function AppRouter() {
                     firstName: ""
                 }}
                     submitNewRecipient={submitNewRecipient} />} />
+
+                <Route path='/login-confirmation' render={
+                    () => <ConfirmationPageContent 
+                        recipient={recipient}
+                        handleYesButtonClick={handleYesButtonClick}
+                        handleNoButtonClick={handleNoButtonClick}
+                        />}/>
             </Switch>
         </Router>
     )
