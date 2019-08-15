@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import SingleRecipientPageContent from '../components/hoh-info-page'
 import HohTable from '../components/all-hoh-table'
 import HohForm from '../components/hoh-form-page/hoh-form'
+import MainHeader from '../components/main-header'
 import Queue from '../components/queue'
 
 function AppRouter() {
@@ -65,6 +66,7 @@ function AppRouter() {
 
     return (
         <Router>
+            <MainHeader/>
             <Switch>
                 <Route exact path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} />} />
                 <Route path='/queue' render={() => <Queue orders={orders} />} />
