@@ -19,7 +19,7 @@ export default function HohTable({ recipients, handleRecipientClick }) {
                 {recipients.map(recipient => <HohTableRow recipient={recipient} handleRecipientClick={handleRecipientClick} />)}
 
             </article>
-            <Link to='/hoh-form'>New Recipient</Link>
+            <Link to='/hoh-form' className="new-recipient-button">New Recipient</Link>
         </>
     )
 }

@@ -182,22 +182,6 @@ a:hover {
     transform: scale(1.05);
 }
 
-.new-recipient-button{
-    background-color: green;
-    color: white;
-    border-radius: 0.5rem;
-    border-color: black;
-    box-shadow: 0 0 10px black;
-    font-size: 2rem;
-    margin-left: 1rem;
-    margin-top: 1rem;
-    padding: .3rem;
-    position: absolute;
-}
-.new-recipient-button:hover{
-    transform: scale(1.05); 
-}
-
 .disabled {
     background-color: grey;
     color: white;
@@ -258,35 +242,27 @@ a:hover {
 }
 
 .results-article{
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.results-article ul{
     display: flex;
-    flex-direction: row;
-    width: 90vw;
+    flex-direction: column;
+    width: inherit;
     font-size: 1rem;
     height: auto;
 }
-.results-article ul li{
+
+.results-table__head{
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
-    width: 5rem;
 }
 
-ul{
+table{
     border-collapse: collapse;
 }
 
-li{
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+table, th, td{
+    border: 1px solid black;
 }
 
-/*keep*/
-.results-table__head li{
+.results-table__head th{
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
        -khtml-user-select: none; /* Konqueror HTML */
@@ -296,8 +272,7 @@ li{
                                   supported by Chrome and Opera */
 }
 
-/*keep*/
-.results-table__head li:hover{
+.results-table__head th:hover{
     color: #51356d;
     background-color: #9e924c;
     cursor: pointer;
