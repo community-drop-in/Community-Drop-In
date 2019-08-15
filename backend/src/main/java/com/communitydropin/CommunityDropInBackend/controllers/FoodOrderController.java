@@ -42,10 +42,13 @@ public class FoodOrderController {
 	}
 	
 	@PostMapping("/food-orders")
-	public FoodOrder postSingleFoodOrder(@RequestBody String orderDataString) throws JSONException {
+	public Iterable<HeadOfHousehold> postSingleFoodOrder(@RequestBody String orderDataString) throws JSONException {
 		FoodOrder foodOrder = makeFoodOrderFromDataJson(orderDataString);
 		
-		return foodOrderRepo.save(foodOrder);
+		foodOrderRepo.save(foodOrder);
+		
+		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
+		
 	}
 
 	private FoodOrder makeFoodOrderFromDataJson(String orderDataString) throws JSONException {
