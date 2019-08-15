@@ -65,10 +65,10 @@ function AppRouter() {
     }
 
     function selectRecipientByPhone(recipientPhoneNumber) {
-        recipients.filter((foundRecipient) => {
+        recipients.filter( async (foundRecipient) => {
             if(foundRecipient.phoneNumber == recipientPhoneNumber){
                 console.log(foundRecipient)
-                setRecipient(foundRecipient)
+                await setRecipient(foundRecipient)
                 console.log(recipient)
             }
         })
@@ -76,6 +76,7 @@ function AppRouter() {
 
     function renderSingleHoh(){
             console.log(recipient)
+        if(recipient.lastName !== undefined)
             return <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
     }
 
