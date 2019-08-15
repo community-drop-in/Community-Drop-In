@@ -5,13 +5,10 @@ import HohTable from '../components/all-hoh-table'
 import HohForm from '../components/hoh-form-page/hoh-form'
 import MainHeader from '../components/main-header'
 import Queue from '../components/queue'
-<<<<<<< HEAD
 import ConfirmationPageContent from '../components/hoh-info-page-login'
-=======
 import HohLogin from '../components/hoh-login/hoh-login'
->>>>>>> e5771f54e01e4e773738df53da505827d259948b
 
-function AppRouter() {
+export default function AppRouter() {
     const [recipients, setRecipients] = useState([])
     const [recipient, setRecipient] = useState({})
     const [recipientPhoneNumber, setRecipientPhoneNumber] = useState()
@@ -30,7 +27,6 @@ function AppRouter() {
             .then(orders => setOrders(orders))
     }, [])
 
-<<<<<<< HEAD
     setInterval(() => {
         fetch(getRootURL() + 'food-orders')
             .then(response => response.json())
@@ -42,15 +38,11 @@ function AppRouter() {
             .then(recipients => setRecipients(recipients))
     }, 3000)
 
-    function handleRecipientClick(clickedRecipient) {
-=======
     async function handleRecipientClick(clickedRecipient) {
->>>>>>> e5771f54e01e4e773738df53da505827d259948b
         // setRecipientPhoneNumber(clickedRecipient.phoneNumber)
         await setRecipient(clickedRecipient)
         console.log(recipient)
     }
-<<<<<<< HEAD
 
     function handleYesButtonClick() {
         alert('Thank you!')
@@ -72,9 +64,6 @@ function AppRouter() {
         alert('Please try again or see a staff member for help in registering.')
     }
 
-=======
-    
->>>>>>> e5771f54e01e4e773738df53da505827d259948b
     function submitNewRecipient(model) { 
         fetch(
             getRootURL()+'recipients', {
@@ -129,13 +118,9 @@ function AppRouter() {
             <Switch>
                 <Route exact path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} />} />
                 <Route path='/queue' render={() => <Queue orders={orders} />} />
-<<<<<<< HEAD
-                <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
-=======
                 {renderSingleHoh()}
                 
                 {/* <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={selectRecipient()} handleOrderButtonClick={handleOrderButtonClick} />} /> */}
->>>>>>> e5771f54e01e4e773738df53da505827d259948b
                 <Route path='/hoh-form' render={() => <HohForm model={{
                     lastName: "",
                     phoneNumber: 0,
@@ -147,7 +132,6 @@ function AppRouter() {
                     firstName: ""
                 }}
                     submitNewRecipient={submitNewRecipient} />} />
-<<<<<<< HEAD
 
                 <Route path='/login-confirmation' render={
                     () => <ConfirmationPageContent 
@@ -155,9 +139,7 @@ function AppRouter() {
                         handleYesButtonClick={handleYesButtonClick}
                         handleNoButtonClick={handleNoButtonClick}
                         />}/>
-=======
                 <Route path='/hoh-login' render={() => <HohLogin selectRecipientByPhone={selectRecipientByPhone}/>}/>
->>>>>>> e5771f54e01e4e773738df53da505827d259948b
             </Switch>
         </Router>
     ) 
@@ -166,5 +148,3 @@ function AppRouter() {
 function getRootURL() {
     return 'http://localhost:8080/api/';
 }
-
-export default AppRouter
