@@ -18,7 +18,7 @@ function InfoPhone({ phoneNumber}) {
                 <h4 className='info-section__content-div__title phone-value'>
                     {InfoPhoneParse({phoneNumber})}</h4>
             </div>
-            <button className='info-section__modify-button phone-modify-button'>Change Phone #</button>
+            {/* <button className='info-section__modify-button phone-modify-button'>Change Phone #</button> */}
         </section>
     );
 }

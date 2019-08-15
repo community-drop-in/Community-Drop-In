@@ -9,9 +9,9 @@ import Queue from '../components/queue'
 function AppRouter() {
     const [recipients, setRecipients] = useState([])
     const [recipient, setRecipient] = useState({})
-    const [selRecPhone, setSelRecPhone] = useState()
+    const [recipientPhoneNumber, setRecipientPhoneNumber] = useState()
+    const [recipientSelector, setRecipientSelector] = useState()
     const [orders, setOrders] = useState([])
-    const [newOrderInfo, setNewOrderInfo] = useState({})
 
     useEffect(() => {
         fetch(getRootURL() + 'recipients')
@@ -26,6 +26,7 @@ function AppRouter() {
     }, [])
 
     function handleRecipientClick(clickedRecipient) {
+        // setRecipientPhoneNumber(clickedRecipient.phoneNumber)
         setRecipient(clickedRecipient)
     }
     function submitNewRecipient(model) { 
@@ -57,7 +58,11 @@ function AppRouter() {
             }
         )
         .then(response => response.json())
-        .then(retrievedRecipients => setRecipients(retrievedRecipients))
+        .then(recipientList => setRecipients(recipientList))
+    }
+
+    function selectRecipient() {
+        return recipients.filter(recipient => {return recipient.phoneNumber == recipientPhoneNumber})
     }
 
     return (
@@ -67,6 +72,7 @@ function AppRouter() {
                 <Route exact path='/' render={() => <HohTable recipients={recipients} handleRecipientClick={handleRecipientClick} />} />
                 <Route path='/queue' render={() => <Queue orders={orders} />} />
                 <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={recipient} handleOrderButtonClick={handleOrderButtonClick} />} />
+                {/* <Route path='/single-hoh' render={() => <SingleRecipientPageContent recipient={selectRecipient()} handleOrderButtonClick={handleOrderButtonClick} />} /> */}
                 <Route path='/hoh-form' render={() => <HohForm model={{
                     lastName: "",
                     phoneNumber: 0,
