@@ -5,6 +5,7 @@ import HohInfoPage from '../components/hoh-info/hoh-info'
 import HohForm from '../components/hoh-form-page/hoh-form'
 import MainHeader from '../components/main-header/main-header'
 import HohLogin from '../components/hoh-login/hoh-login'
+import { conditionalExpression } from '@babel/types';
 
 function App () {
   const [recipients, setRecipients] = useState([])
@@ -28,15 +29,27 @@ function App () {
     }
     )
       .then(response => response.json())
-    console.log(recipients)
+    setRoute('user')
+    updateRecipient(model.phoneNumber)
+    console.log(recipient)
+    toggleLogin()
   }
 
   function updateRecipient (recipientPhoneNumber) {
-    const recipient = recipients.filter(recipient => recipientPhoneNumber === recipient.phonNumber)[0]
-    setRecipient(recipient)
+    const foundRecipient = recipients.filter(mappedRecipient => recipientPhoneNumber == mappedRecipient.phoneNumber)[0]
+    if(foundRecipient){
+      setRecipient(foundRecipient)
+    }
   }
 
-  function updateLogin () {
+  function updateLogin (recipientPhoneNumber) {
+    const foundRecipient = recipients.filter(mappedRecipient => recipientPhoneNumber == mappedRecipient.phoneNumber)[0]
+    if(foundRecipient){
+      setIsLoggedIn(!isLoggedIn)
+    }
+  }
+
+  function toggleLogin(){
     setIsLoggedIn(!isLoggedIn)
   }
 
@@ -45,8 +58,8 @@ function App () {
       <MainHeader isLoggedIn={isLoggedIn} setRoute={setRoute} />
 
       {!isLoggedIn && <HohLogin updateLogin={updateLogin} updateRecipient={updateRecipient} />}
-      {(isLoggedIn && route === 'user') && <HohInfoPage updateLogin={updateLogin} recipient={recipient} />}
-      {(isLoggedIn && route === 'form') && <HohForm model={{
+      {(isLoggedIn && route === 'user') && <HohInfoPage toggleLogin={toggleLogin} recipient={recipient} />}
+      {(!isLoggedIn && route === 'form') && <HohForm model={{
         lastName: "",
         phoneNumber: 0,
         address: "",
