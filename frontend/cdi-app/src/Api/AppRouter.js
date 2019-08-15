@@ -26,6 +26,17 @@ function AppRouter() {
             .then(orders => setOrders(orders))
     }, [])
 
+    setInterval(() => {
+        fetch(getRootURL() + 'food-orders')
+            .then(response => response.json())
+            .then(orders => setOrders(orders))
+    }, 3000)
+    setInterval(() => {
+        fetch(getRootURL() + 'recipients')
+            .then(response => response.json())
+            .then(recipients => setRecipients(recipients))
+    }, 3000)
+
     function handleRecipientClick(clickedRecipient) {
         // setRecipientPhoneNumber(clickedRecipient.phoneNumber)
         setRecipient(clickedRecipient)
@@ -114,13 +125,11 @@ function AppRouter() {
                         />}/>
             </Switch>
         </Router>
-    )
-    
+    ) 
 }
 
 function getRootURL() {
     return 'http://localhost:8080/api/';
 }
-
 
 export default AppRouter
