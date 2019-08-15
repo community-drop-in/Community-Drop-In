@@ -7,8 +7,8 @@ import Queue from '../components/queue'
 function AppRouter() {
     const [recipients, setRecipients] = useState([])
     const [recipient, setRecipient] = useState({})
+    const [selRecPhone, setSelRecPhone] = useState()
     const [orders, setOrders] = useState([])
-    const[newOrderInfo, setNewOrderInfo] = useState({})
 
     useEffect(() => {
         fetch(getRootURL() + 'recipients')
@@ -22,25 +22,26 @@ function AppRouter() {
             .then(orders => setOrders(orders))
     }, [])
 
-    function handleRecipientClick(recipient) {
-        setRecipient(recipient)
+    function handleRecipientClick(clickedRecipient) {
+        setRecipient(clickedRecipient)
     }
 
-    function handleOrderButtonClick(recipient){
-        setNewOrderInfo({
-            phoneNumber:recipient.phoneNumber,
-            date: new Date().toISOString().slice(0,10)
-        })
+    function handleOrderButtonClick(clickedRecipient){
+        console.log('clicked recipient',clickedRecipient)
         fetch(
             getRootURL()+'food-orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(newOrderInfo)
+                body: JSON.stringify({
+                    phoneNumber:clickedRecipient.phoneNumber,
+                    date: new Date().toISOString().slice(0,10)
+                })
             }
         )
         .then(response => response.json())
+        .then(retrievedRecipients => setRecipients(retrievedRecipients))
     }
 
     return (
@@ -52,10 +53,12 @@ function AppRouter() {
             </Switch>
         </Router>
     )
+    
 }
 
 function getRootURL() {
     return 'http://localhost:8080/api/';
 }
+
 
 export default AppRouter
