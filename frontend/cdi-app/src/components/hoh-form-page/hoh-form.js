@@ -22,16 +22,17 @@ export default function HohForm({ model, submitNewRecipient }) {
                     model.lastName = e.target.value
                 }} /><br />
                 Date Of Birth:
-            <input type="text" placeholder="DateOfBirth" onChange={(e) => {
-                    model.dateOfBirth = e.target.value
+            <input type="date" placeholder="DateOfBirth" onChange={(e) => {
+                    
+                    model.dateOfBirth = e.target.value.replace("/", "-")
                 }} /><br />
                 Address:
             <input type="text" placeholder="Address" onChange={(e) => {
                     model.address = e.target.value
                 }} /><br />
                 Phone Number:
-            <input type="text" placeholder="PhoneNumber" onChange={(e) => {
-                    model.phoneNumber = e.target.value
+            <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}|[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="PhoneNumber" onChange={(e) => {
+                    model.phoneNumber = e.target.value.replace("-", "").replace("-", "")
                 }} /><br />
                 Household Size:
             <input type="text" placeholder="HouseholdSize" onChange={(e) => {
