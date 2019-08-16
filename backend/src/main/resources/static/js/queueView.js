@@ -1,7 +1,7 @@
 
 
-// Class Queue{
-//     renderRecipients(){
+Class Queue{
+    renderRecipients(){
 
-//     }
-// }
+    }
+}
