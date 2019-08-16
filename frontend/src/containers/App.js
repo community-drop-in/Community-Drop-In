@@ -73,7 +73,7 @@ function App () {
 
   return (
     <>
-      <MainHeader />
+      <MainHeader isLoggedIn={isLoggedIn} setRoute={setRoute} />
 
       {(!isLoggedIn && route === 'user') && <HohLogin updateLogin={logInWithPhone} updateRecipient={updateRecipient} setRoute={setRoute} />}
       {(isLoggedIn && route === 'user') && <HohInfo logOut={logOut} recipient={recipient} />}
