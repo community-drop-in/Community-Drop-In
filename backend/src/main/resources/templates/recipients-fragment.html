@@ -1,0 +1,4 @@
+<div class='kitchen-sub-header' th:each="order: ${orders}">
+    <h2 class='recipient-kitchen-name'th:text="${order.hohFirstName} + ' ' + ${order.hohLastName}"></h2>
+    <h2 class='recipient-kitchen-house-size' th:text="${order.size}"></h2>
+</div>

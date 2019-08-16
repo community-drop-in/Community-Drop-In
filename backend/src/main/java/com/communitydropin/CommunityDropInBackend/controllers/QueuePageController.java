@@ -18,7 +18,7 @@ public class QueuePageController {
 	@RequestMapping("")
 	public String getOrders(Model model) {
 		model.addAttribute("orders", orderRepo.findAll());
-		return "queueView";
+		return "recipients-fragment";
 	}
 	
 	@DeleteMapping("/reject")
