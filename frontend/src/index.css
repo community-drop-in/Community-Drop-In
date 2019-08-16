@@ -173,7 +173,7 @@ a:hover {
 }
 
 .give-food-button {
-    background-color: #DEB887;
+    background-color: rgb(222, 141, 135);
     color: white;
     border-radius: 0.5rem;
     border-color: black;
@@ -185,7 +185,7 @@ a:hover {
 }
 
 .yes-button {
-
+    background-color: rgb(98, 174, 32);
 }
 
 .yes-button:hover {
@@ -193,7 +193,7 @@ a:hover {
 }
 
 .no-button {
-
+    background-color: rgb(194, 72, 63);
 }
 
 .no-button:hover {
