@@ -65,11 +65,6 @@ function App () {
       model.firstName && model.lastName && model.dateOfBirth && model.address && model.phoneNumber && model.houseSize
     )
   }
-  async function handleRecipientClick(clickedRecipient) {
-    await setRecipient(clickedRecipient)
-    logIn()
-    setRoute('user')
-}
 
   return (
     <>
@@ -90,7 +85,6 @@ function App () {
         submitNewRecipient={submitNewRecipient}
         goBackClick={setRoute}
         />}
-      {(!isLoggedIn && route === 'table') && <HohTable handleRecipientClick={handleRecipientClick} recipients={recipients}/>}
     </>
   )
 

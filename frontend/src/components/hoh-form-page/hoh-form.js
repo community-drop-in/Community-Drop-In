@@ -4,9 +4,7 @@ export default function HohForm ({ model, submitNewRecipient, goBackClick }) {
 
     return (
         <div className='wrapper'>
-            <header className='main-header'>
-                <h1>New Recipient</h1>
-            </header><br />
+                <h1>New Recipient</h1><br />
             <form className='recipient-form' onSubmit={(e) => {
                 e.preventDefault()
                 submitNewRecipient(model)
