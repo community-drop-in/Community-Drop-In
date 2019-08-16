@@ -20,19 +20,21 @@ function App () {
   }, [])
 
   function submitNewRecipient (model) {
-    fetch('http://localhost:8080/api/recipients', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(model)
+    if(noNullValuesInNewRecipient(model)) {
+      alert('Welcome!')
+      fetch('http://localhost:8080/api/recipients', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(model)
+      }
+      )
+        .then(response => response.json())
+        .then(recipients => setRecipients(recipients))
+      setRoute('user')
+      updateRecipient(model.phoneNumber)
     }
-    )
-      .then(response => response.json())
-      .then(recipients => setRecipients(recipients))
-    setRoute('user')
-    updateRecipient(model.phoneNumber)
-    console.log(recipient)
   }
 
   function updateRecipient (recipientPhoneNumber) {
@@ -57,11 +59,17 @@ function App () {
     setIsLoggedIn(false)
   }
 
+  function noNullValuesInNewRecipient(model) {
+    return (
+      model.firstName && model.lastName && model.dateOfBirth && model.address && model.phoneNumber && model.houseSize
+    )
+  }
+
   return (
     <>
-      <MainHeader isLoggedIn={isLoggedIn} setRoute={setRoute} />
+      <MainHeader />
 
-      {(!isLoggedIn && route === 'user') && <HohLogin updateLogin={logInWithPhone} updateRecipient={updateRecipient} />}
+      {(!isLoggedIn && route === 'user') && <HohLogin updateLogin={logInWithPhone} updateRecipient={updateRecipient} setRoute={setRoute} />}
       {(isLoggedIn && route === 'user') && <HohInfo logOut={logOut} recipient={recipient} />}
       {(!isLoggedIn && route === 'form') && <HohForm model={{
         lastName: "",
@@ -73,7 +81,9 @@ function App () {
         foodOrders: [],
         firstName: ""
       }}
-        submitNewRecipient={submitNewRecipient} />}
+        submitNewRecipient={submitNewRecipient}
+        goBackClick={setRoute}
+        />}
     </>
   )
 

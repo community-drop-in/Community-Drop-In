@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function HohForm ({ model, submitNewRecipient }) {
+export default function HohForm ({ model, submitNewRecipient, goBackClick }) {
 
     return (
         <div className='wrapper'>
@@ -45,8 +45,9 @@ export default function HohForm ({ model, submitNewRecipient }) {
                 </select>
                 <br />
                 <button className='give-food-button' type="submit" value="Submit">Submit</button><br />
-
             </form>
+
+            <button onClick={()=>goBackClick('user')} className='create-user-button'>Go Back</button><br />
         </div>
     )
 }
