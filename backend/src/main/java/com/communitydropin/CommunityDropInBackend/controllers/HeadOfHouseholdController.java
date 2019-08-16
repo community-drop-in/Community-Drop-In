@@ -70,9 +70,10 @@ public class HeadOfHouseholdController {
 	}
 
 	@PostMapping("/recipients")
-	public HeadOfHousehold postSingleRecipient(@RequestBody String hohDataString) throws JSONException {
+	public Iterable<HeadOfHousehold> postSingleRecipient(@RequestBody String hohDataString) throws JSONException {
 		HeadOfHousehold newHoh = makeHohFromDataJson(hohDataString);
-		return hohRepo.save(newHoh);
+		hohRepo.save(newHoh);
+		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
 	}
 
 	@PatchMapping("/recipients/{id}/update-address")

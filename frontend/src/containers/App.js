@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './App.css';
 
-import HohInfoPage from '../components/hoh-info/hoh-info'
+import HohInfo from '../components/hoh-info/hoh-info'
 import HohForm from '../components/hoh-form-page/hoh-form'
 import MainHeader from '../components/main-header/main-header'
 import HohLogin from '../components/hoh-login/hoh-login'
@@ -29,10 +29,10 @@ function App () {
     }
     )
       .then(response => response.json())
+      .then(recipients => setRecipients(recipients))
     setRoute('user')
     updateRecipient(model.phoneNumber)
     console.log(recipient)
-    toggleLogin()
   }
 
   function updateRecipient (recipientPhoneNumber) {
@@ -42,23 +42,27 @@ function App () {
     }
   }
 
-  function updateLogin (recipientPhoneNumber) {
+  function logInWithPhone (recipientPhoneNumber) {
     const foundRecipient = recipients.filter(mappedRecipient => recipientPhoneNumber == mappedRecipient.phoneNumber)[0]
     if(foundRecipient){
-      setIsLoggedIn(!isLoggedIn)
+      logIn()
     }
   }
 
-  function toggleLogin(){
-    setIsLoggedIn(!isLoggedIn)
+  function logIn(){
+    setIsLoggedIn(true)
+  }
+
+  function logOut(){
+    setIsLoggedIn(false)
   }
 
   return (
     <>
       <MainHeader isLoggedIn={isLoggedIn} setRoute={setRoute} />
 
-      {!isLoggedIn && <HohLogin updateLogin={updateLogin} updateRecipient={updateRecipient} />}
-      {(isLoggedIn && route === 'user') && <HohInfoPage toggleLogin={toggleLogin} recipient={recipient} />}
+      {(!isLoggedIn && route === 'user') && <HohLogin updateLogin={logInWithPhone} updateRecipient={updateRecipient} />}
+      {(isLoggedIn && route === 'user') && <HohInfo logOut={logOut} recipient={recipient} />}
       {(!isLoggedIn && route === 'form') && <HohForm model={{
         lastName: "",
         phoneNumber: 0,

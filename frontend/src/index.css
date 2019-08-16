@@ -181,18 +181,11 @@ a:hover {
     font-size: 1rem;
     margin: 0.5rem;
     padding: 1rem;
+    width:8rem;
 }
 
 .yes-button {
-    background-color: green;
-    color: white;
-    border-radius: 0.5rem;
-    border-color: black;
-    box-shadow: 0 0 10px black;
-    font-size: 3rem;
-    margin: 0.5rem;
-    padding: 1rem;
-    width:12rem;
+
 }
 
 .yes-button:hover {
@@ -200,16 +193,7 @@ a:hover {
 }
 
 .no-button {
-    background-color: red;
-    color: white;
-    border-radius: 0.5rem;
-    border-width: 2px;
-    border-color: black;
-    box-shadow: 0 0 10px black;
-    font-size: 3rem;
-    margin: 0.5rem;
-    padding: 1rem;
-    width: 12rem;
+
 }
 
 .no-button:hover {
