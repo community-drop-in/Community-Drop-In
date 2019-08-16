@@ -5,6 +5,7 @@ import HohInfo from '../components/hoh-info/hoh-info'
 import HohForm from '../components/hoh-form-page/hoh-form'
 import MainHeader from '../components/main-header/main-header'
 import HohLogin from '../components/hoh-login/hoh-login'
+import HohTable from '../components/hoh-table/hoh-table'
 import { conditionalExpression } from '@babel/types';
 
 function App () {
@@ -57,6 +58,12 @@ function App () {
     setIsLoggedIn(false)
   }
 
+  async function handleRecipientClick(clickedRecipient) {
+    await setRecipient(clickedRecipient)
+    logIn()
+    setRoute('user')
+}
+
   return (
     <>
       <MainHeader isLoggedIn={isLoggedIn} setRoute={setRoute} />
@@ -74,6 +81,7 @@ function App () {
         firstName: ""
       }}
         submitNewRecipient={submitNewRecipient} />}
+      {(!isLoggedIn && route === 'table') && <HohTable handleRecipientClick={handleRecipientClick} recipients={recipients}/>}
     </>
   )
 
