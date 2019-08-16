@@ -9,4 +9,6 @@ public interface FoodOrderRepository extends CrudRepository<FoodOrder, Long> {
 
 	Iterable<FoodOrder> findAll(Sort by);
 
+	FoodOrder findByFulfilled(boolean b);
+
 }

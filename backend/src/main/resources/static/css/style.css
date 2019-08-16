@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+        /* PUT BORDERS AROUND EVERYTHING FOR TESTING */
+        /* border-style: solid;
+        border-color: red;
+        border-width: 1px; */
+}
+
+/* WRAPPER / CONTAINER STUFF */
+
+html {
+    /* VARIABLES */
+    --color-link-hover: red;
+    --color-background: rgb(242, 223, 117);
+    --color-foreground: rebeccapurple;
+
+    /* FONTS, BACKGROUNDS, ETC. */
+    background: var(--color-background);
+    color: var(--color-foreground);
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px 1.618;
+}
+
+body {
+
+}
+
+.wrapper {
+    max-width: 50rem;
+    margin: auto;
+
+}
+
+.container {
+
+}
+
+.table {
+    
+}
+
+
+/* LISTS, LINKS, ETC. */
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: var(--color-link-hover);
+}
+
+.kitchen-main-header {
+    color: var(--color-background);
+    background: var(--color-foreground);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+    margin: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 30em;
+    height: 10rem;
+    
+}
+
+.kitchen-sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 40px;
+    border: 2px solid;
+    margin: 5rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 20em;
+}
+
+.kitchen-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.kitchen-button-undo {
+    background-color: red;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+}
+
+.kitchen-button-finished {
+    background-color: green;
+    color: white;
+    border-radius: 0.5rem;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+   
+}
