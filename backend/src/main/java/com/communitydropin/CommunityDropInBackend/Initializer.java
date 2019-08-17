@@ -44,6 +44,8 @@ public class Initializer implements CommandLineRunner {
 	private void populateOrders() {
 		FoodOrder order = new FoodOrder(hohRepo.findByPhoneNumber(3304529259L), LocalDate.of(2019, 8, 2));
 		foodOrderRepo.save(order);
+		FoodOrder order2 = new FoodOrder(hohRepo.findByPhoneNumber(6144462687L), LocalDate.of(2019, 8, 2));
+		foodOrderRepo.save(order2);
 	}
 
 }

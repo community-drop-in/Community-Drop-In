@@ -24,11 +24,14 @@ public class FoodOrder {
 	private int size;
 
 	private LocalDate date;
+	
+	private boolean fulfilled;
 
 	public FoodOrder(HeadOfHousehold hoh, LocalDate date) {
 		this.hoh = hoh;
 		this.size = hoh.getHouseSize();
 		this.date = date;
+		this.fulfilled = false;
 	}
 
 	@SuppressWarnings("unused")
@@ -55,7 +58,15 @@ public class FoodOrder {
 	public String getDate() {
 		return date.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
-
+	
+	public boolean isFulfilled() {
+		return fulfilled;
+	}
+	
+	public void accept() {
+		fulfilled = true;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

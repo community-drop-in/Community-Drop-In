@@ -15,9 +15,8 @@
 html {
     
     /* VARIABLES */
-    --color-link-hover: maroon;
-    --color-background: rgb(242, 223, 117);
-    --color-foreground: rebeccapurple;
+    
+   
 
     /* FONTS, BACKGROUNDS, ETC. */
     background: var(--color-background);
@@ -131,6 +130,7 @@ a:hover {
     margin: 0.5rem;
     padding: 1rem;
     width:8rem;
+    margin-top: 3rem;
 }
 
 .give-food-button:hover {
@@ -204,7 +204,7 @@ a:hover {
     align-items: center;
     /* background: var(--color-foreground); */
     box-shadow: 0 0 10px black;
-    color: var(--color-background);
+    color: #fff;
     display:flex;
     justify-content: space-between;
     padding: 1rem;
@@ -371,34 +371,17 @@ li{
 }
 
 
-.head__firstname{
-
+input {
+  display: block; 
+  position: center;
+  margin-left:auto;
+  margin-right:auto;
+  width: 150px; 
 }
-
-.head__lastname{
-
+.form-wrapper{
+    text-align: center;
+    color:#fff;
 }
-
-.head__dob{
-
-}
-
-.head__phone{
-
-}
-
-.head__address{
-
-}
-
-.head__household{
-
-}
-
-.head__delivery{
-
-}
-
-.head__eligible{
-
+.delivery-button{
+    margin-left: 2rem;
 }

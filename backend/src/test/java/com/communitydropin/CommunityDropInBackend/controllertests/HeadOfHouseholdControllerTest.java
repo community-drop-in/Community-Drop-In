@@ -63,7 +63,7 @@ public class HeadOfHouseholdControllerTest {
 	@Test
 	public void hohControllerShouldPostSingleHoh() throws JSONException {
 		when(hohRepo.save(any(HeadOfHousehold.class))).thenReturn(johnDoe);
-		HeadOfHousehold postSingleRecipientReturn = underTest.postSingleRecipient(JOHNDOEJSONPOST);
+		Iterable <HeadOfHousehold> postSingleRecipientReturn = underTest.postSingleRecipient(JOHNDOEJSONPOST);
 		verify(hohRepo).save(johnDoe);
 		assertThat(postSingleRecipientReturn, is(johnDoe));
 	}
