@@ -1,4 +1,20 @@
-<div class='kitchen-sub-header' th:each="order: ${orders}">
-    <h2 class='recipient-kitchen-name'th:text="${order.hohFirstName} + ' ' + ${order.hohLastName}"></h2>
-    <h2 class='recipient-kitchen-house-size' th:text="${order.size}"></h2>
+<div class="kitchen-sub-header" th:each="order: ${orders}">
+  <h2
+    class="recipient-kitchen-name"
+    th:text="${order.hohFirstName} + ' ' + ${order.hohLastName}"
+  ></h2>
+  <h2 class="recipient-kitchen-house-size" th:text="${order.size}"></h2>
+  <div class="kitchen-buttons">
+    <!-- <form
+      action="#"
+      th:action="@{'/delete/{id}'(id=${order.id})}"
+      th:method="delete"
+    >
+      <input type="hidden" name="_method" th:value="delete" /> -->
+    <button type="submit" class="kitchen-button-undo cancel-button">
+      Cancel
+    </button>
+    <!-- </form> -->
+    <button class="kitchen-button-finished submit-button">Serve</button>
+  </div>
 </div>
