@@ -10,11 +10,11 @@ export default function HohForm ({ model, submitNewRecipient, goBackClick }) {
                 submitNewRecipient(model)
             }}>
                 First Name
-            <input type="text" placeholder="FirstName" onChange={(e) => {
+            <input type="text" placeholder="First Name" onChange={(e) => {
                     model.firstName = e.target.value
                 }} /><br />
                 Last Name
-            <input type="text" placeholder="LastName" onChange={(e) => {
+            <input type="text" placeholder="Last Name" onChange={(e) => {
                     model.lastName = e.target.value
                 }} /><br />
                 Password
@@ -23,8 +23,8 @@ export default function HohForm ({ model, submitNewRecipient, goBackClick }) {
                 Confirm Password
             <input type="password" placeholder="Password" onChange={(e) => {
                 }} /><br />
-                Date Of Birth
-            <input type="date" placeholder="DateOfBirth" onChange={(e) => {
+                Date of Birth
+            <input type="date" placeholder="Date of Birth" onChange={(e) => {
 
                     model.dateOfBirth = e.target.value.replace("/", "-")
                 }} /><br />
@@ -37,7 +37,7 @@ export default function HohForm ({ model, submitNewRecipient, goBackClick }) {
                     model.phoneNumber = e.target.value.replace("-", "").replace("-", "")
                 }} /><br />
                 Household Size
-            <input type="text" placeholder="HouseholdSize" onChange={(e) => {
+            <input type="text" placeholder="Household Size" onChange={(e) => {
                     model.houseSize = e.target.value
                 }} /><br />
                 Delivery             
