@@ -17,6 +17,12 @@ export default function HohForm ({ model, submitNewRecipient, goBackClick }) {
             <input type="text" placeholder="LastName" onChange={(e) => {
                     model.lastName = e.target.value
                 }} /><br />
+                Password
+            <input type="password" placeholder="Password" onChange={(e) => {
+                }} /><br />
+                Confirm Password
+            <input type="password" placeholder="Password" onChange={(e) => {
+                }} /><br />
                 Date Of Birth
             <input type="date" placeholder="DateOfBirth" onChange={(e) => {
 

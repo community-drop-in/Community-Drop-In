@@ -14,7 +14,7 @@ export default function HohLogin ({ updateLogin, updateRecipient, setRoute }) {
                 <h2 className='recipient-login__info-header'>Phone Number</h2>
                 <input className='recipient-login__info' type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}|[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)} />
                 <h2 className='recipient-login__info-header'>Password</h2>
-                <input className='recipient-login__info' type="text" placeholder="Password" />
+                <input className='recipient-login__info' type="password" placeholder="Password" />
                 <h2 className='recipient-login__info-header'/>
                 <button className='give-food-button'>Log In</button>
             </form>
