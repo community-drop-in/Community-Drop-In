@@ -24,12 +24,11 @@ class Queue {
   }
 
   deleteQueueOrder(id) {
-    fetch(`http://localhost:8080/queue/delete`, {
+    fetch(`http://localhost:8080/queue/delete/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ id: `${id}` })
+      }
     }).then(this.renderRecipients());
   }
 

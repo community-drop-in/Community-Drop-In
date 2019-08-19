@@ -22,7 +22,7 @@ public class QueuePageController {
 		return "recipients-fragment";
 	}
 	
-	@DeleteMapping("/delete")
+	@DeleteMapping("/delete/{id}")
 	public String deleteOrder(@PathVariable Long id, Model model) {
 		orderRepo.deleteById(id);
 		return "recipients-fragment";

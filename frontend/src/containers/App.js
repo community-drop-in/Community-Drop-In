@@ -38,6 +38,20 @@ function App () {
     }
   }
 
+  function submitNewOrder (orderPhoneNumber) {
+    let today = new Date().toISOString()
+    fetch('http://localhost:8080/api/food-orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          phoneNumber: orderPhoneNumber,
+          date: today.substring(0,10)
+        })
+      })
+  }
+
   function updateRecipient (recipientPhoneNumber) {
     const foundRecipient = recipients.filter(mappedRecipient => recipientPhoneNumber == mappedRecipient.phoneNumber)[0]
     if(foundRecipient){
@@ -71,7 +85,7 @@ function App () {
       <MainHeader isLoggedIn={isLoggedIn} setRoute={setRoute} />
 
       {(!isLoggedIn && route === 'user') && <HohLogin updateLogin={logInWithPhone} updateRecipient={updateRecipient} setRoute={setRoute} />}
-      {(isLoggedIn && route === 'user') && <HohInfo logOut={logOut} recipient={recipient} />}
+      {(isLoggedIn && route === 'user') && <HohInfo logOut={logOut} recipient={recipient} submitFoodOrder={submitNewOrder} />}
       {(!isLoggedIn && route === 'form') && <HohForm model={{
         lastName: "",
         phoneNumber: 0,

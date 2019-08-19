@@ -48,9 +48,6 @@ public class FoodOrderController {
 		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
 		
 	}
-	public void foo () {
-		
-	}
 
 	private FoodOrder makeFoodOrderFromDataJson(String orderDataString) throws JSONException {
 		FoodOrder foodOrder;
