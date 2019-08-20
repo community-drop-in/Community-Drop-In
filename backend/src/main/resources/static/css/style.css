@@ -60,9 +60,9 @@ a:hover {
   flex-grow: 1;
   width: 5rem;
 }
-.queue-field__title ul li:last-child {
+/* .queue-field__title ul li:last-child {
   background-color: orange;
-}
+} */
 .queue-field__title {
   margin-top: 2rem;
   margin-bottom: 4rem;
