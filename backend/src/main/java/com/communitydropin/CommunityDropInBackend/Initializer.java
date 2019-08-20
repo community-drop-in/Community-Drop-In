@@ -26,26 +26,42 @@ public class Initializer implements CommandLineRunner {
 	}
 
 	private void populateHoh() {
-		HeadOfHousehold hoh = new HeadOfHousehold("Joe", "Schmmo", "1770 Pennsylvania Ave", 3304529259L, true, 3,
-				LocalDate.of(1995, 10, 7));
-		hohRepo.save(hoh);
-		HeadOfHousehold johnDoe = new HeadOfHousehold("John", "Doe", "771 Ainavlysnnep Ave", 3304529260L, false, 1,
-				LocalDate.of(1994, 10, 7));
-		hohRepo.save(johnDoe);
-		HeadOfHousehold martinFowler = new HeadOfHousehold("Martin", "Fowler", "5555 Fake Ave", 6144462687L, false, 2,
-				LocalDate.of(1983, 4, 6));
-		hohRepo.save(martinFowler);
-		HeadOfHousehold robbieRotten = new HeadOfHousehold("Robbie", "Rotten", "6666 Rotten Rd", 9876543210L, false, 3,
-				LocalDate.of(1984, 12, 21));
-		hohRepo.save(robbieRotten);
+		HeadOfHousehold hoh1 = new HeadOfHousehold("Isaac", "Kim", "1770 Pennsylvania Ave", 3305551111L, true, 2,
+				LocalDate.of(1990, 5, 7));
+		hohRepo.save(hoh1);
+		HeadOfHousehold hoh2 = new HeadOfHousehold("Kai", "Hennacy", "1771 Connecticut Ave", 3305552222L, false, 1,
+				LocalDate.of(1998, 5, 21));
+		hohRepo.save(hoh2);
+		HeadOfHousehold hoh3 = new HeadOfHousehold("Brandon", "Cox", "1772 Ohio Dr", 3305553333L, false, 1,
+				LocalDate.of(1993, 10, 6));
+		hohRepo.save(hoh3);
+		HeadOfHousehold hoh4 = new HeadOfHousehold("Matt", "Laine", "1773 Indiana St", 3305554444L, false, 5,
+				LocalDate.of(1992, 8, 1));
+		hohRepo.save(hoh4);
+		HeadOfHousehold hoh5 = new HeadOfHousehold("Don", "Hamilton III", "1774 Kentucky Rd", 3305555555L, false, 2,
+				LocalDate.of(1985, 11, 12));
+		hohRepo.save(hoh5);
+		HeadOfHousehold hoh6 = new HeadOfHousehold("Ben", "Williams", "1775 West Virginia Ave", 3305556666L, false, 3,
+				LocalDate.of(1982, 7, 7));
+		hohRepo.save(hoh6);
+		HeadOfHousehold hoh7 = new HeadOfHousehold("Lacey", "Nichols", "1776 New York Ave", 3305557777L, false, 2,
+				LocalDate.of(1990, 4, 4));
+		hohRepo.save(hoh7);
+		HeadOfHousehold hoh8 = new HeadOfHousehold("Kendra", "Reynolds", "1777 Rhode Island Ct", 3305558888L, false, 2,
+				LocalDate.of(1990,  5, 5));
+		hohRepo.save(hoh8);
 		
 	}
 	
 	private void populateOrders() {
-		FoodOrder order = new FoodOrder(hohRepo.findByPhoneNumber(3304529259L), LocalDate.of(2019, 8, 2));
-		foodOrderRepo.save(order);
-		FoodOrder order2 = new FoodOrder(hohRepo.findByPhoneNumber(6144462687L), LocalDate.of(2019, 8, 2));
+		FoodOrder order1 = new FoodOrder(hohRepo.findByPhoneNumber(3305555555L), LocalDate.now());
+		foodOrderRepo.save(order1);
+		FoodOrder order2 = new FoodOrder(hohRepo.findByPhoneNumber(3305556666L), LocalDate.now());
 		foodOrderRepo.save(order2);
+		FoodOrder order3 = new FoodOrder(hohRepo.findByPhoneNumber(3305557777L), LocalDate.now());
+		foodOrderRepo.save(order3);
+		FoodOrder order4 = new FoodOrder(hohRepo.findByPhoneNumber(3305558888L), LocalDate.now());
+		foodOrderRepo.save(order4);
 	}
 
 }
