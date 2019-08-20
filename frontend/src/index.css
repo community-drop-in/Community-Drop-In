@@ -69,6 +69,7 @@ a:hover {
 }
 
 .create-user-button {
+  position: relative;
   background-color: #deb887;
   color: white;
   border-radius: 0.5rem;
@@ -79,7 +80,6 @@ a:hover {
   margin-right: auto;
   margin-top: 2rem;
   padding: 1rem;
-  width: 8rem;
 }
 
 .create-user-button:hover {
@@ -391,4 +391,10 @@ input {
 }
 .delivery-button {
   margin-left: 2rem;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 }
