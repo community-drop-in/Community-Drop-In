@@ -1,21 +1,25 @@
-<div class="kitchen-sub-header" th:each="order: ${orders}">
-  <h2
-    class="recipient-kitchen-name"
-    th:text="${order.hohFirstName} + ' ' + ${order.hohLastName}"
-  ></h2>
-  <h2 class="recipient-kitchen-house-size" th:text="${order.size}"></h2>
-  <div class="kitchen-buttons">
-    <form>
-      <input
-        class="id-input"
-        type="hidden"
-        name="_method"
-        th:value="${order.id}"
-      />
-      <button type="submit" class="kitchen-button-undo cancel-button">
-        Cancel
-      </button>
-    </form>
-    <button class="kitchen-button-finished serve-button">Serve</button>
-  </div>
-</div>
+<ul class="queue-field__title">
+  <li>Recipients</li>
+  <li>Household Size</li>
+  <li>Action</li>
+</ul>
+<ul class="queue-field__order" th:each="order: ${orders}">
+  <li th:text="${order.hohFirstName} + ' ' + ${order.hohLastName}"></li>
+  <li th:text="${order.size}"></li>
+  <li>
+    <div class="kitchen-buttons">
+      <form>
+        <input
+          class="id-input"
+          type="hidden"
+          name="_method"
+          th:value="${order.id}"
+        />
+        <button type="submit" class="kitchen-button-undo cancel-button">
+          Cancel
+        </button>
+      </form>
+      <button class="kitchen-button-finished serve-button">Serve</button>
+    </div>
+  </li>
+</ul>

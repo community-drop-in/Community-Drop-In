@@ -27,7 +27,6 @@ class Queue {
             fetch("http://localhost:8080/queue/delete/" + inputId, {
               method: "DELETE"
             });
-            alert("Order Served");
           });
         });
       });

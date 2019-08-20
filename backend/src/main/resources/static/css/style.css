@@ -18,7 +18,7 @@ html {
   color: var(--color-foreground);
   /* FONTS, BACKGROUNDS, ETC. */
   font-family: "Roboto", sans-serif;
-  font-size: 20px 1.618;
+  /* font-size: 20px 1.618; */
   background-image: linear-gradient(var(--gradient-top), var(--gradient-bottom)),
     url(pexels-photo-1435895.jpeg);
   background-size: cover;
@@ -43,30 +43,38 @@ a {
 a:hover {
   color: var(--color-link-hover);
 }
-.kitchen-main-header {
-  /* color: var(--color-background); */
-  /* background: var(--color-foreground); */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 30px;
-  margin: 0px;
-  margin-right: auto;
+.queue-div {
   margin-left: auto;
-  width: 30em;
-  height: 10rem;
-}
-.kitchen-sub-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 40px;
-  border: 2px solid;
-  margin: 5rem;
   margin-right: auto;
-  margin-left: auto;
-  width: 20em;
+  width: fit-content;
 }
+
+.queue-div ul {
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+  font-size: 1rem;
+  height: auto;
+}
+.queue-div ul li {
+  flex-grow: 1;
+  width: 5rem;
+}
+.queue-field__title ul li:last-child {
+  background-color: orange;
+}
+.queue-field__title {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  font-style: bold;
+  font-size: 50px !important;
+}
+
+.queue-field__order {
+  margin-top: 2rem;
+  font-size: 36px !important;
+}
+
 .kitchen-buttons {
   display: flex;
   justify-content: space-around;
@@ -74,24 +82,20 @@ a:hover {
 .kitchen-button-undo {
   background-color: red;
   color: white;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   border-color: black;
   box-shadow: 0 0 10px black;
-  font-size: 3rem;
+  font-size: 36px;
   margin: 0.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 .kitchen-button-finished {
   background-color: green;
   color: white;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   border-color: black;
   box-shadow: 0 0 10px black;
-  font-size: 3rem;
+  font-size: 36px;
   margin: 0.5rem;
-  padding: 1rem;
-}
-
-.hidden {
-  display: none;
+  padding: 0.5rem;
 }
