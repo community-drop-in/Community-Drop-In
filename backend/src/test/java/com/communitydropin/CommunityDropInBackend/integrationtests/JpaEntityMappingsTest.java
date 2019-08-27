@@ -14,9 +14,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.communitydropin.CommunityDropInBackend.entities.FoodOrder;
-import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.entities.Recipient;
 import com.communitydropin.CommunityDropInBackend.repositories.FoodOrderRepository;
-import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
+import com.communitydropin.CommunityDropInBackend.repositories.RecipientRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -26,24 +26,24 @@ public class JpaEntityMappingsTest {
 	private TestEntityManager entityManager;
 	
 	@Autowired
-	private HeadOfHouseholdRepository hohRepo;
+	private RecipientRepository hohRepo;
 	
 	@Autowired
 	private FoodOrderRepository foodOrderRepo;
 		
-	private HeadOfHousehold hoh;
+	private Recipient hoh;
 	private FoodOrder foodOrder;
 	
 	@Before
 	public void setup () {
-		hoh = new HeadOfHousehold("", "", "", 22332L, false, 5, LocalDate.of(2013, 1, 2));
+		hoh = new Recipient("", "", "", 22332L, false, 5, LocalDate.of(2013, 1, 2));
 		hohRepo.save(hoh);
 		flushAndClearEntityManager();
 	}
 	
 	@Test
 	public void shoudLoadAndSaveHoh() {
-		HeadOfHousehold foundHoh = hohRepo.findById(hoh.getId()).get();
+		Recipient foundHoh = hohRepo.findById(hoh.getId()).get();
 		assertThat(foundHoh, is(hoh));
 	}
 	@Test

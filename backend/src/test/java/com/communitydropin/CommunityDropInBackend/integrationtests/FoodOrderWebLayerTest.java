@@ -19,15 +19,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.communitydropin.CommunityDropInBackend.controllers.FoodOrderController;
 import com.communitydropin.CommunityDropInBackend.entities.FoodOrder;
-import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.entities.Recipient;
 import com.communitydropin.CommunityDropInBackend.repositories.FoodOrderRepository;
-import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
+import com.communitydropin.CommunityDropInBackend.repositories.RecipientRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(FoodOrderController.class)
@@ -43,35 +44,35 @@ public class FoodOrderWebLayerTest {
 	MockMvc mockMvc;
 
 	@MockBean
-	HeadOfHouseholdRepository hohRepo;
+	RecipientRepository recipientRepo;
 
 	@MockBean
 	FoodOrderRepository foodOrderRepo;
 
 	ObjectMapper mapper = new ObjectMapper();
 
-	private HeadOfHousehold hoh;
+	private Recipient recipient;
 
 	private FoodOrder foodOrder;
 	
 	private FoodOrder foodOrder2;
 
-	List<FoodOrder> foodOrderList;
+	Iterable <FoodOrder> foodOrderList;
 
 	@Before
 	public void setup() {
-		hoh = new HeadOfHousehold("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
+		recipient = new Recipient("John", "Doe", "123 Anywhere Street", 6145551212L, false, 4,
 				LocalDate.parse("1995-10-08"));
-		hohRepo.save(hoh);
-		foodOrder = new FoodOrder(hoh, LocalDate.of(2001, 1, 1));
+		recipientRepo.save(recipient);
+		foodOrder = new FoodOrder(recipient, LocalDate.of(2001, 1, 1));
 		foodOrderRepo.save(foodOrder);
 		foodOrderList = Collections.singletonList(foodOrder);
-		foodOrder2 = new FoodOrder(hoh, LocalDate.of(2019, 8, 2));
+		foodOrder2 = new FoodOrder(recipient, LocalDate.of(2019, 8, 2));
 	}
 
 	@Test
 	public void shouldBeAbleToRetrieveAllFoodOrders() throws Exception {
-		when(foodOrderRepo.findAll()).thenReturn(foodOrderList);
+		when(foodOrderRepo.findAll(Sort.by(Sort.Direction.ASC,"date"))).thenReturn(foodOrderList);
 		mockMvc.perform(get("/api/food-orders")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
 				.andExpect(content().json(mapper.writeValueAsString(foodOrderList), true));
@@ -87,11 +88,11 @@ public class FoodOrderWebLayerTest {
 
 	@Test
 	public void shouldBeAbleToPostSingleFoodOrder() throws Exception {
-		FoodOrder foodOrder2 = new FoodOrder(hoh, LocalDate.of(2019, 8, 2));
-		when(hohRepo.findByPhoneNumber(6145551212L)).thenReturn(hoh);
-		when(foodOrderRepo.save(any(FoodOrder.class))).thenReturn(foodOrder2);
+		when(recipientRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"))).thenReturn(Collections.singletonList(recipient));
+		when(recipientRepo.findByPhoneNumber(6145551212L)).thenReturn(recipient);
 		mockMvc.perform(post("/api/food-orders").contentType(MediaType.APPLICATION_JSON_UTF8)
-			.content(FOODORDER2JSON)).andExpect(status().isOk())
-			.andExpect(content().json(mapper.writeValueAsString(foodOrder2)));
+			.content(FOODORDER2JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().json(mapper.writeValueAsString(Collections.singletonList(recipient)), true));
 	}
 }

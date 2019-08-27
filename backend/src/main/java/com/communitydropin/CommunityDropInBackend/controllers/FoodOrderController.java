@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.communitydropin.CommunityDropInBackend.entities.FoodOrder;
-import com.communitydropin.CommunityDropInBackend.entities.HeadOfHousehold;
+import com.communitydropin.CommunityDropInBackend.entities.Recipient;
 import com.communitydropin.CommunityDropInBackend.repositories.FoodOrderRepository;
-import com.communitydropin.CommunityDropInBackend.repositories.HeadOfHouseholdRepository;
+import com.communitydropin.CommunityDropInBackend.repositories.RecipientRepository;
 
 @RestController
 @CrossOrigin
@@ -29,7 +29,7 @@ public class FoodOrderController {
 	FoodOrderRepository foodOrderRepo;
 	
 	@Autowired
-	HeadOfHouseholdRepository hohRepo;
+	RecipientRepository recipientRepo;
 	
 	@GetMapping("/food-orders")
 	public Iterable<FoodOrder> retrieveAllFoodOrders() {
@@ -42,10 +42,10 @@ public class FoodOrderController {
 	}
 	
 	@PostMapping("/food-orders")
-	public Iterable<HeadOfHousehold> postSingleFoodOrder(@RequestBody String orderDataString) throws JSONException {
+	public Iterable<Recipient> postSingleFoodOrder(@RequestBody String orderDataString) throws JSONException {
 		FoodOrder foodOrder = makeFoodOrderFromDataJson(orderDataString);
 		foodOrderRepo.save(foodOrder);
-		return hohRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
+		return recipientRepo.findAll(Sort.by(Sort.Direction.ASC, "lastName"));
 		
 	}
 
@@ -54,9 +54,9 @@ public class FoodOrderController {
 		Object orderDataObject = JSONParser.parseJSON(orderDataString);
 		JSONObject orderDataJson = (JSONObject) orderDataObject;
 		Long phoneNumber = orderDataJson.getLong("phoneNumber");
-		HeadOfHousehold retrievedHoh = hohRepo.findByPhoneNumber(phoneNumber);
+		Recipient retrievedRecipient = recipientRepo.findByPhoneNumber(phoneNumber);
 		String dateString = orderDataJson.getString("date");
-		foodOrder = new FoodOrder(retrievedHoh, LocalDate.parse(dateString));
+		foodOrder = new FoodOrder(retrievedRecipient, LocalDate.parse(dateString));
 		return foodOrder;
 	}
 	

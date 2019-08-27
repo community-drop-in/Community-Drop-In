@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class HeadOfHousehold {
+public class Recipient {
 
 	@Id
 	@GeneratedValue
@@ -23,11 +23,11 @@ public class HeadOfHousehold {
 	private boolean deliveryStatus;
 	private int houseSize;
 	private LocalDate dateOfBirth;
-	@OneToMany(mappedBy="hoh")
+	@OneToMany(mappedBy="recipient")
 	private List<FoodOrder> foodOrders;
 	private String firstName;
 
-	public HeadOfHousehold(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus,
+	public Recipient(String firstName, String lastName, String address, Long phoneNumber, boolean deliveryStatus,
 			int houseSize, LocalDate dateOfBirth) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -40,7 +40,7 @@ public class HeadOfHousehold {
 	}
 
 	@SuppressWarnings("unused")
-	private HeadOfHousehold() {
+	private Recipient() {
 
 	}
 
@@ -120,7 +120,7 @@ public class HeadOfHousehold {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HeadOfHousehold other = (HeadOfHousehold) obj;
+		Recipient other = (Recipient) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;

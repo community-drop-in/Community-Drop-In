@@ -19,7 +19,7 @@ public class FoodOrder {
 
 	@ManyToOne
 	@JsonIgnore
-	private HeadOfHousehold hoh;
+	private Recipient recipient;
 
 	private int size;
 
@@ -27,8 +27,8 @@ public class FoodOrder {
 	
 	private boolean fulfilled;
 
-	public FoodOrder(HeadOfHousehold hoh, LocalDate date) {
-		this.hoh = hoh;
+	public FoodOrder(Recipient hoh, LocalDate date) {
+		this.recipient = hoh;
 		this.size = hoh.getHouseSize();
 		this.date = date;
 		this.fulfilled = false;
@@ -44,11 +44,11 @@ public class FoodOrder {
 	}
 
 	public String getHohFirstName() {
-		return hoh.getFirstName();
+		return recipient.getFirstName();
 	}
 	
 	public String getHohLastName() {
-		return hoh.getLastName();
+		return recipient.getLastName();
 	}
 
 	public int getSize() {
