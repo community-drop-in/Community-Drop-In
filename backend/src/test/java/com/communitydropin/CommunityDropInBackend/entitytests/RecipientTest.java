@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.communitydropin.CommunityDropInBackend.entities.Recipient;
 
-public class HeadOfHouseholdTest {
+public class RecipientTest {
 	
 	@Test
 	public void shouldChangeHeadOfHouseholdDeliveryStatusFromFalseToTrue() {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.communitydropin.CommunityDropInBackend.entities.FoodOrder;
 import com.communitydropin.CommunityDropInBackend.repositories.FoodOrderRepository;
 
 @Controller
@@ -17,14 +18,13 @@ public class QueuePageController {
 	FoodOrderRepository orderRepo;
 	
 	@RequestMapping("")
-	public String getOrders(Model model) {
-		model.addAttribute("orders", orderRepo.findAll());
-		return "recipients-fragment";
+	public Iterable <FoodOrder> getOrders() {
+		return orderRepo.findAll();
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public String deleteOrder(@PathVariable Long id, Model model) {
+	public Iterable<FoodOrder> deleteOrder(@PathVariable Long id) {
 		orderRepo.deleteById(id);
-		return "recipients-fragment";
+		return orderRepo.findAll();
 	}
 }
